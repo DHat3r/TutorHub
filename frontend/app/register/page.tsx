@@ -2,6 +2,7 @@
 
 import { useState, ChangeEvent, useEffect } from "react";
 import Link from "next/link";
+import AuthLayout from "@/components/brand/AuthLayout"
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -104,21 +105,10 @@ export default function RegisterPage() {
   }, []);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-brand-100 via-slate-50 to-brand-200 p-4">
-      <Card className="w-full max-w-md shadow-2xl">
-        <CardHeader className="text-center">
-          <Link href="/" className="inline-block">
-            <h1 className="text-3xl font-bold tracking-tight text-brand-700">
-              TutorHub
-            </h1>
-          </Link>
-          <CardTitle className="mt-2 text-2xl">Crear una Cuenta</CardTitle>
-          <CardDescription>
-            Ingresa tus datos para unirte a nuestra comunidad.
-          </CardDescription>
-        </CardHeader>
+    <AuthLayout title="Crear una cuenta" subtitle="Ingresa tus datos para unirte a la comunidad.">
+      <Card className="w-full shadow-sm">
         <form onSubmit={handleSubmit}>
-          <CardContent className="space-y-4">
+          <CardContent className="space-y-4 pt-6">
             <div className="grid gap-1.5">
               <Label htmlFor="full_name">Nombre Completo</Label>
               <Input
@@ -252,7 +242,7 @@ export default function RegisterPage() {
                 (window.location.href =
                   `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/google`)
               }
-              className="w-full bg-red-600 py-3 text-base hover:bg-red-700"
+              className="w-full border border-border bg-white py-3 text-base text-brand-950 hover:bg-slate-50"
             >
               Registrarse con Google
             </Button>
@@ -269,6 +259,6 @@ export default function RegisterPage() {
           </CardFooter>
         </form>
       </Card>
-    </div>
+    </AuthLayout>
   );
 }

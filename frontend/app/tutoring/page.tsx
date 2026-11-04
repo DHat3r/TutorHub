@@ -253,7 +253,7 @@ export default function TutoringListPage() {
         <div className="container px-4 py-10 md:px-6">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>
-              <h1 className="text-3xl font-bold tracking-tight text-brand-700">Tutorías Disponibles</h1>
+              <h1 className="text-3xl font-bold tracking-tight text-brand-950">Tutorías Disponibles</h1>
               <p className="text-muted-foreground">Encuentra la tutoría que necesitas para tus materias.</p>
             </div>
             <div className="flex items-center gap-2">
