@@ -38,7 +38,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { formatDateUTC } from "@/lib/utils";
 import RequireEmailVerified from "@/components/RequireEmailVerified";
 
-export enum DayOfWeek {
+enum DayOfWeek {
   LUNES = "LUNES",
   MARTES = "MARTES",
   MIERCOLES = "MIERCOLES",
