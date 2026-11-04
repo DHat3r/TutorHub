@@ -552,7 +552,7 @@ export default function TutorDashboardPage() {
               {myTutoringsData.length > 0 ? (
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                   {myTutoringsData.map((tutoring) => (
-                    <Card key={tutoring.id} className="h-full overflow-hidden">
+                    <Card key={tutoring.id} className="flex h-full flex-col overflow-hidden">
                       <CardHeader className="pb-2">
                         <div className="flex items-center justify-between">
                           <CardTitle className="text-lg font-medium">{tutoring.title}</CardTitle>
@@ -578,10 +578,12 @@ export default function TutorDashboardPage() {
                           </div>
                         </div>
                       </CardContent>
-                      <CardFooter className="flex gap-2">
+                      {/* Pie en dos filas: la acción principal a todo el ancho y las secundarias debajo.
+                          Antes eran tres botones en una fila y "Eliminar" se salía de la tarjeta. */}
+                      <CardFooter className="mt-auto grid grid-cols-2 gap-2">
                         <Button
                             variant="outline"
-                            className="flex-1 bg-transparent"
+                            className="col-span-2 border-brand-200 bg-brand-50 text-brand-800 hover:bg-brand-100"
                             onClick={() => setSelectedTutoringForStudents({
                               ...tutoring,
                               end_time: tutoring.end_time ? new Date(tutoring.end_time) : null,
@@ -591,12 +593,12 @@ export default function TutorDashboardPage() {
                             Ver estudiantes
                           </Button>
 
-                        <Button variant="outline" className="flex-1" onClick={() => router.push(`/tutoring/${tutoring.id}/edit`)}>
+                        <Button variant="outline" onClick={() => router.push(`/tutoring/${tutoring.id}/edit`)}>
                           <Edit className="mr-2 h-4 w-4" /> Editar
                         </Button>
                         <AlertDialog>
                           <AlertDialogTrigger asChild>
-                            <Button variant="outline" className="flex-1 border-red-500 text-red-600 hover:bg-red-50 hover:text-red-700" disabled={deletingTutoringId === tutoring.id}>
+                            <Button variant="outline" className="border-rose-200 text-rose-600 hover:bg-rose-50 hover:text-rose-700" disabled={deletingTutoringId === tutoring.id}>
                               {deletingTutoringId === tutoring.id ? (<><Clock className="mr-2 h-4 w-4 animate-spin" /> Eliminando...</>) : (<><Trash2 className="mr-2 h-4 w-4" /> Eliminar</>)}
                             </Button>
                           </AlertDialogTrigger>

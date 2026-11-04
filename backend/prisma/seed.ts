@@ -160,8 +160,13 @@ async function seedTutorings(tutorId: number) {
   const existing = await prisma.tutoringSession.count({ where: { tutorId } });
   if (existing > 0) return;
 
-  const courseNames = ['CÁLCULO I', 'PROGRAMACIÓN', 'ÁLGEBRA LINEAL'];
-  for (const [i, name] of courseNames.entries()) {
+  // Nombre del ramo en la base (mayúsculas) y cómo se muestra en el título.
+  const demoCourses = [
+    ['CÁLCULO I', 'Cálculo I'],
+    ['PROGRAMACIÓN', 'Programación'],
+    ['ÁLGEBRA LINEAL', 'Álgebra Lineal'],
+  ];
+  for (const [i, [name, displayName]] of demoCourses.entries()) {
     const course = await prisma.course.findUniqueOrThrow({ where: { name } });
     await prisma.tutorCourse.upsert({
       where: { tutorId_courseId: { tutorId, courseId: course.id } },
@@ -179,7 +184,7 @@ async function seedTutorings(tutorId: number) {
       data: {
         tutorId,
         courseId: course.id,
-        title: `Repaso de ${name.toLowerCase()}`,
+        title: `Repaso de ${displayName}`,
         description: 'Repasamos la materia de la prueba con ejercicios resueltos.',
         date: new Date(Date.UTC(start.getUTCFullYear(), start.getUTCMonth(), start.getUTCDate())),
         start_time: start,
