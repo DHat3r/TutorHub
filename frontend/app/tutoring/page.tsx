@@ -253,7 +253,7 @@ export default function TutoringListPage() {
         <div className="container px-4 py-10 md:px-6">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>
-              <h1 className="text-3xl font-bold tracking-tight text-sky-700">Tutorías Disponibles</h1>
+              <h1 className="text-3xl font-bold tracking-tight text-brand-700">Tutorías Disponibles</h1>
               <p className="text-muted-foreground">Encuentra la tutoría que necesitas para tus materias.</p>
             </div>
             <div className="flex items-center gap-2">
@@ -265,7 +265,7 @@ export default function TutoringListPage() {
               />
               {loggedInUserProfile && loggedInUserProfile.user && loggedInUserProfile.user.role !== "STUDENT" && (
                 <Link href="/tutoring/create">
-                  <Button className="bg-sky-600 hover:bg-sky-700">
+                  <Button className="bg-brand-600 hover:bg-brand-700">
                     <Plus className="mr-2 h-4 w-4" />
                     Nueva Tutoría
                   </Button>
@@ -279,11 +279,11 @@ export default function TutoringListPage() {
             {filteredTutorings.length > 0 ? (
               filteredTutorings.map((tutoring) => (
                 <Link href={`/tutoring/${tutoring.id}`} key={tutoring.id}>
-                  <Card className="h-full overflow-hidden transition-all hover:border-sky-300 hover:shadow-md">
+                  <Card className="h-full overflow-hidden transition-all hover:border-brand-300 hover:shadow-md">
                     <CardHeader className="pb-2">
                       <div className="flex items-center justify-between">
                         <CardTitle className="text-lg font-medium">{tutoring.title}</CardTitle>
-                        <Badge variant="outline" className="bg-sky-50 text-sky-700">
+                        <Badge variant="outline" className="bg-brand-50 text-brand-700">
                           {tutoring.course?.name || "N/A"}
                         </Badge>
                       </div>
@@ -339,7 +339,7 @@ export default function TutoringListPage() {
                               handleSave(tutoring.id);
                             }}
                           >
-                            <Bookmark className={`h-5 w-5 ${savedTutorings.includes(tutoring.id) ? "text-sky-600 fill-sky-600" : "text-muted-foreground"}`} />
+                            <Bookmark className={`h-5 w-5 ${savedTutorings.includes(tutoring.id) ? "text-brand-600 fill-brand-600" : "text-muted-foreground"}`} />
                           </Button>
                         )}
                       </div>
@@ -382,7 +382,7 @@ export default function TutoringListPage() {
                 <Button
                   onClick={handleRatingSubmit}
                   disabled={submitting || rating === 0}
-                  className="bg-sky-600 hover:bg-sky-700 text-white"
+                  className="bg-brand-600 hover:bg-brand-700 text-white"
                 >
                   {submitting ? "Enviando..." : "Enviar Calificación"}
                 </Button>

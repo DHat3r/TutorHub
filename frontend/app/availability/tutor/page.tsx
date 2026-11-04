@@ -141,7 +141,7 @@ export default function ManageAvailabilityPage() {
                 </Button>
               </Link>
               <div>
-                <h1 className="text-3xl font-bold tracking-tight text-sky-700">Mi Disponibilidad</h1>
+                <h1 className="text-3xl font-bold tracking-tight text-brand-700">Mi Disponibilidad</h1>
                 <p className="text-muted-foreground">Agrega o ajusta tus horarios disponibles para ofrecer tutorías.</p>
               </div>
             </div>

@@ -177,11 +177,11 @@ export default function TutorPublicProfilePage() {
         <Button variant="ghost" size="icon" onClick={() => router.back()} className="mr-4">
           <ChevronLeft className="h-5 w-5" />
         </Button>
-        <h1 className="text-3xl font-bold text-sky-700">Perfil del Tutor</h1>
+        <h1 className="text-3xl font-bold text-brand-700">Perfil del Tutor</h1>
       </div>
 
       <Card className="overflow-hidden">
-        <CardHeader className="bg-sky-50 p-6">
+        <CardHeader className="bg-brand-50 p-6">
           <div className="flex flex-col items-center gap-4 text-center md:flex-row md:text-left">
             <Avatar className="h-24 w-24 border-4 border-white shadow-lg">
               <AvatarImage src={tutorProfile.user?.photo_url || "/placeholder-user.jpg"} alt={tutorProfile.user?.full_name || "Tutor"} />
@@ -190,8 +190,8 @@ export default function TutorPublicProfilePage() {
               </AvatarFallback>
             </Avatar>
             <div>
-              <CardTitle className="text-3xl font-semibold text-sky-800">{tutorProfile.user?.full_name || "Nombre no disponible"}</CardTitle>
-              <CardDescription className="mt-1 text-lg text-sky-600">
+              <CardTitle className="text-3xl font-semibold text-brand-800">{tutorProfile.user?.full_name || "Nombre no disponible"}</CardTitle>
+              <CardDescription className="mt-1 text-lg text-brand-600">
                 {tutorProfile.tutorProfile?.degree || "Grado no especificado"}
               </CardDescription>
             </div>
@@ -200,30 +200,30 @@ export default function TutorPublicProfilePage() {
         <CardContent className="p-6 space-y-6">
           {tutorProfile.tutorProfile?.bio && (
             <div>
-              <h3 className="mb-2 text-xl font-semibold text-sky-700">Sobre mí</h3>
+              <h3 className="mb-2 text-xl font-semibold text-brand-700">Sobre mí</h3>
               <p className="text-muted-foreground whitespace-pre-line">{tutorProfile.tutorProfile.bio}</p>
             </div>
           )}
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <div className="space-y-4">
-              <h3 className="text-xl font-semibold text-sky-700">Información Académica</h3>
+              <h3 className="text-xl font-semibold text-brand-700">Información Académica</h3>
               <div className="flex items-start gap-3">
-                <University className="h-5 w-5 mt-1 text-sky-600 flex-shrink-0" />
+                <University className="h-5 w-5 mt-1 text-brand-600 flex-shrink-0" />
                 <div>
                   <p className="font-medium">Universidad</p>
                   <p className="text-sm text-muted-foreground">{tutorProfile.tutorProfile?.university || "No especificada"}</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <GraduationCap className="h-5 w-5 mt-1 text-sky-600 flex-shrink-0" />
+                <GraduationCap className="h-5 w-5 mt-1 text-brand-600 flex-shrink-0" />
                 <div>
                   <p className="font-medium">Carrera / Grado</p>
                   <p className="text-sm text-muted-foreground">{tutorProfile.tutorProfile?.degree || "No especificada"}</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <CalendarIcon className="h-5 w-5 mt-1 text-sky-600 flex-shrink-0" />
+                <CalendarIcon className="h-5 w-5 mt-1 text-brand-600 flex-shrink-0" />
                 <div>
                   <p className="font-medium">Año Académico</p>
                   <p className="text-sm text-muted-foreground">{formatAcademicYear(tutorProfile.tutorProfile?.academic_year)}</p>
@@ -232,9 +232,9 @@ export default function TutorPublicProfilePage() {
             </div>
 
             <div className="space-y-4">
-              <h3 className="text-xl font-semibold text-sky-700">Contacto</h3>
+              <h3 className="text-xl font-semibold text-brand-700">Contacto</h3>
               <div className="flex items-start gap-3">
-                <Mail className="h-5 w-5 mt-1 text-sky-600 flex-shrink-0" />
+                <Mail className="h-5 w-5 mt-1 text-brand-600 flex-shrink-0" />
                 <div>
                   <p className="font-medium">Email para Tutorías</p>
                   <p className="text-sm text-muted-foreground">{tutorProfile.tutorProfile?.tutoring_contact_email || tutorProfile.user?.email || "No disponible"}</p>
@@ -246,10 +246,10 @@ export default function TutorPublicProfilePage() {
 
           {tutorProfile.tutorProfile?.courses && tutorProfile.tutorProfile.courses.length > 0 && (
             <div>
-              <h3 className="mb-3 text-xl font-semibold text-sky-700">Cursos que Imparte</h3>
+              <h3 className="mb-3 text-xl font-semibold text-brand-700">Cursos que Imparte</h3>
               <div className="flex flex-wrap gap-2">
                 {tutorProfile.tutorProfile.courses.map((course) => (
-                  <Badge key={course.id} variant="secondary" className="text-sm bg-sky-100 text-sky-800 hover:bg-sky-200">
+                  <Badge key={course.id} variant="secondary" className="text-sm bg-brand-100 text-brand-800 hover:bg-brand-200">
                     {course.name}
                   </Badge>
                 ))}
@@ -259,7 +259,7 @@ export default function TutorPublicProfilePage() {
           
           {/* Availability Section - Styled like Tutor Dashboard */}
           <div>
-            <h3 className="mb-3 text-xl font-semibold text-sky-700">Disponibilidad</h3>
+            <h3 className="mb-3 text-xl font-semibold text-brand-700">Disponibilidad</h3>
             {tutorProfile.tutorProfile?.availability && tutorProfile.tutorProfile.availability.length > 0 ? (
               <Card>
                 <CardContent className="p-4 space-y-3">
@@ -273,7 +273,7 @@ export default function TutorPublicProfilePage() {
                     .map((block: AvailabilityBlock) => (
                     <div key={block.id} className="flex items-center justify-between rounded-lg border p-3 hover:bg-slate-50 transition-colors">
                         <div>
-                        <p className="font-medium text-sky-700">{formatDate(block.start_time)}</p>
+                        <p className="font-medium text-brand-700">{formatDate(block.start_time)}</p>
                         <p className="text-sm text-muted-foreground">
                             {formatHour(block.start_time)} - {formatHour(block.end_time)}
                         </p>
@@ -297,7 +297,7 @@ export default function TutorPublicProfilePage() {
 
           {/* Placeholder for Reviews - to be implemented */}
           <div>
-            <h3 className="mb-3 text-xl font-semibold text-sky-700">Calificaciones y Reseñas</h3>
+            <h3 className="mb-3 text-xl font-semibold text-brand-700">Calificaciones y Reseñas</h3>
             <Card className="border-dashed border-slate-300 bg-slate-50">
               <CardContent className="p-6 text-center text-muted-foreground">
                 <p>Las calificaciones y reseñas de los estudiantes estarán disponibles próximamente.</p>

@@ -25,21 +25,21 @@ export default function Header() {
 
   if (!user) {
     return (
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <header className="sticky top-0 z-50 w-full bg-brand-950 text-white shadow-md">
         <div className="container flex h-16 items-center">
-          <Link href="/" className="text-xl font-bold text-sky-600 cursor-default select-none">
-            TUTORHUB
+          <Link href="/" className="text-xl font-bold tracking-tight cursor-default select-none">
+            Tutor<span className="text-brand-400">Hub</span>
           </Link>
           <nav className="ml-auto flex items-center gap-4 sm:gap-6">
             <Link
               href="/login"
-              className={`text-sm font-medium ${pathname === '/login' ? 'text-foreground' : 'text-muted-foreground'} hover:text-foreground`}
+              className={`text-sm font-medium ${pathname === '/login' ? 'text-white' : 'text-white/60'} hover:text-white`}
             >
               Iniciar Sesión
             </Link>
             <Link
               href="/register"
-              className={`text-sm font-medium ${pathname === '/register' ? 'text-foreground' : 'text-muted-foreground'} hover:text-foreground`}
+              className={`text-sm font-medium ${pathname === '/register' ? 'text-white' : 'text-white/60'} hover:text-white`}
             >
               Registrarse
             </Link>
@@ -56,33 +56,33 @@ export default function Header() {
   const profileHref = isTutor ? "/profile/tutor" : "/profile/student";
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full bg-brand-950 text-white shadow-md">
       <div className="container flex h-16 items-center">
-        <Link href="/" className="text-xl font-bold text-sky-600 cursor-default select-none">
-          TUTORHUB
+        <Link href="/" className="text-xl font-bold tracking-tight cursor-default select-none">
+          Tutor<span className="text-brand-400">Hub</span>
         </Link>
         <nav className="ml-auto flex items-center gap-4 sm:gap-6">
           <Link
             href="/tutoring"
-            className={`text-sm font-medium ${pathname === '/tutoring' ? 'text-foreground' : 'text-muted-foreground'} hover:text-foreground`}
+            className={`text-sm font-medium ${pathname === '/tutoring' ? 'text-white' : 'text-white/60'} hover:text-white`}
           >
             Explorar
           </Link>
           <Link
             href="/calendar"
-            className={`text-sm font-medium ${pathname === '/calendar' ? 'text-foreground' : 'text-muted-foreground'} hover:text-foreground`}
+            className={`text-sm font-medium ${pathname === '/calendar' ? 'text-white' : 'text-white/60'} hover:text-white`}
           >
             Calendario
           </Link>
           <Link
             href={dashboardHref}
-            className={`text-sm font-medium ${pathname.startsWith('/dashboard') ? 'text-foreground' : 'text-muted-foreground'} hover:text-foreground`}
+            className={`text-sm font-medium ${pathname.startsWith('/dashboard') ? 'text-white' : 'text-white/60'} hover:text-white`}
           >
             Mi Dashboard
           </Link>
           <Link
             href={profileHref}
-            className={`text-sm font-medium ${pathname.startsWith('/profile') ? 'text-foreground' : 'text-muted-foreground'} hover:text-foreground`}
+            className={`text-sm font-medium ${pathname.startsWith('/profile') ? 'text-white' : 'text-white/60'} hover:text-white`}
           >
             Mi Perfil
           </Link>
@@ -91,7 +91,7 @@ export default function Header() {
               <Button variant="ghost" className="relative h-8 w-8 rounded-full">
                 <Avatar className="h-8 w-8">
                   <AvatarImage src={user.photo_url || undefined} alt={user.full_name} />
-                  <AvatarFallback>{getInitials(user.full_name)}</AvatarFallback>
+                  <AvatarFallback className="bg-brand-500 text-white">{getInitials(user.full_name)}</AvatarFallback>
                 </Avatar>
               </Button>
             </DropdownMenuTrigger>

@@ -143,7 +143,7 @@ export default function ConvertToTutorPage() {
             <ChevronLeft className="h-5 w-5" />
           </Button>
         </Link>
-        <h1 className="text-3xl font-bold text-sky-700">
+        <h1 className="text-3xl font-bold text-brand-700">
           Convertirme en Tutor
         </h1>
       </div>
@@ -163,8 +163,8 @@ export default function ConvertToTutorPage() {
         </Alert>
       )}
 
-      <Alert className="mb-6 bg-sky-50 border-sky-200 text-sky-800">
-        <AlertCircle className="h-4 w-4 text-sky-700" />
+      <Alert className="mb-6 bg-brand-50 border-brand-200 text-brand-800">
+        <AlertCircle className="h-4 w-4 text-brand-700" />
         <AlertTitle className="font-semibold">
           Información Importante
         </AlertTitle>
@@ -238,7 +238,7 @@ export default function ConvertToTutorPage() {
             </Button>
             <Button
               type="submit"
-              className="bg-sky-600 hover:bg-sky-700 w-full sm:w-auto"
+              className="bg-brand-600 hover:bg-brand-700 w-full sm:w-auto"
               disabled={isLoading}
             >
               {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}

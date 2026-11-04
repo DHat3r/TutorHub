@@ -393,12 +393,12 @@ export default function TutorDashboardPage() {
         <div className="container px-4 py-10 md:px-6">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>
-              <h1 className="text-3xl font-bold tracking-tight text-sky-700">Dashboard de Tutor</h1>
+              <h1 className="text-3xl font-bold tracking-tight text-brand-700">Dashboard de Tutor</h1>
               <p className="text-muted-foreground">Bienvenido, {tutorName}</p>
             </div>
             <div className="flex items-center gap-2">
               <Link href="/tutoring/create">
-                <Button className="bg-sky-600 hover:bg-sky-700">
+                <Button className="bg-brand-600 hover:bg-brand-700">
                   <Plus className="mr-2 h-4 w-4" />
                   Crear Tutoría
                 </Button>
@@ -422,7 +422,7 @@ export default function TutorDashboardPage() {
                       <CardHeader className="pb-2">
                         <div className="flex items-center justify-between">
                           <CardTitle className="text-lg font-medium">{session.title}</CardTitle>
-                          <Badge variant="outline" className="bg-sky-50 text-sky-700">
+                          <Badge variant="outline" className="bg-brand-50 text-brand-700">
                             {session.area}
                           </Badge>
                         </div>
@@ -436,15 +436,15 @@ export default function TutorDashboardPage() {
                       <CardContent>
                         <div className="grid gap-2">
                           <div className="flex items-center gap-2 text-sm">
-                            <Calendar className="h-4 w-4 text-sky-600" />
+                            <Calendar className="h-4 w-4 text-brand-600" />
                             <span>{session.date}</span>
                           </div>
                           <div className="flex items-center gap-2 text-sm">
-                            <Clock className="h-4 w-4 text-sky-600" />
+                            <Clock className="h-4 w-4 text-brand-600" />
                             <span>{session.time}</span>
                           </div>
                           <div className="flex items-center gap-2 text-sm">
-                            <MapPin className="h-4 w-4 text-sky-600" />
+                            <MapPin className="h-4 w-4 text-brand-600" />
                             <span>{session.location}</span>
                           </div>
                         </div>
@@ -466,7 +466,7 @@ export default function TutorDashboardPage() {
                       Las sesiones confirmadas o pendientes con estudiantes aparecerán aquí.
                     </p>
                     <Link href="/tutoring/create">
-                      <Button className="bg-sky-600 hover:bg-sky-700">Crear Tutoría</Button>
+                      <Button className="bg-brand-600 hover:bg-brand-700">Crear Tutoría</Button>
                     </Link>
                   </CardContent>
                 </Card>
@@ -551,7 +551,7 @@ export default function TutorDashboardPage() {
                       <CardHeader className="pb-2">
                         <div className="flex items-center justify-between">
                           <CardTitle className="text-lg font-medium">{tutoring.title}</CardTitle>
-                          <Badge variant="outline" className="bg-sky-50 text-sky-700">
+                          <Badge variant="outline" className="bg-brand-50 text-brand-700">
                             {tutoring.area}
                           </Badge>
                         </div>
@@ -575,11 +575,11 @@ export default function TutorDashboardPage() {
                         <p className="text-sm text-muted-foreground line-clamp-2">{tutoring.description}</p>
                         <div className="mt-2 grid gap-1 text-xs">
                           <div className="flex items-center gap-1">
-                            <Calendar className="h-3 w-3 text-sky-600" />
+                            <Calendar className="h-3 w-3 text-brand-600" />
                             <span>{tutoring.date}</span>
                           </div>
                           <div className="flex items-center gap-1">
-                            <Clock className="h-3 w-3 text-sky-600" />
+                            <Clock className="h-3 w-3 text-brand-600" />
                             <span>{tutoring.time}</span>
                           </div>
                         </div>
@@ -641,7 +641,7 @@ export default function TutorDashboardPage() {
               )}
               <div className="mt-4 flex justify-center">
                 <Link href="/tutoring/create">
-                  <Button className="bg-sky-600 hover:bg-sky-700">
+                  <Button className="bg-brand-600 hover:bg-brand-700">
                     <Plus className="mr-2 h-4 w-4" />
                     Crear Nueva Tutoría
                   </Button>
@@ -676,7 +676,7 @@ export default function TutorDashboardPage() {
                 </CardContent>              
                 <CardFooter className="flex justify-end">
                   <Link href="/availability/tutor">
-                    <Button className="bg-sky-600 hover:bg-sky-700 text-white">
+                    <Button className="bg-brand-600 hover:bg-brand-700 text-white">
                       Editar mi disponibilidad
                     </Button>
                   </Link>
@@ -694,19 +694,19 @@ export default function TutorDashboardPage() {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="rounded-lg border p-3 text-center">
                     <p className="text-sm text-muted-foreground">Tutorías creadas</p>
-                    <p className="text-2xl font-bold text-sky-700">{myTutoringsData.length}</p>
+                    <p className="text-2xl font-bold text-brand-700">{myTutoringsData.length}</p>
                   </div>
                   <div className="rounded-lg border p-3 text-center">
                     <p className="text-sm text-muted-foreground">Sesiones Próximas</p>
-                    <p className="text-2xl font-bold text-sky-700">{upcomingSessionsData.length}</p>
+                    <p className="text-2xl font-bold text-brand-700">{upcomingSessionsData.length}</p>
                   </div>
                   <div className="rounded-lg border p-3 text-center">
                     <p className="text-sm text-muted-foreground">Estudiantes ayudados</p>
-                    <p className="text-2xl font-bold text-sky-700">0</p>
+                    <p className="text-2xl font-bold text-brand-700">0</p>
                   </div>
                   <div className="rounded-lg border p-3 text-center">
                     <p className="text-sm text-muted-foreground">Calificación promedio</p>
-                    <p className="text-2xl font-bold text-sky-700">
+                    <p className="text-2xl font-bold text-brand-700">
                       {currentUserProfile?.tutorProfile?.average_rating || "-"}
                     </p>
                   </div>
@@ -723,7 +723,7 @@ export default function TutorDashboardPage() {
                 <div className="flex flex-wrap gap-2">
                   {currentUserProfile?.tutorProfile?.courses && currentUserProfile.tutorProfile.courses.length > 0 ? (
                     currentUserProfile.tutorProfile.courses.map((course) => (
-                      <Badge key={course.courseId} className="bg-sky-100 text-sky-800 hover:bg-sky-200">
+                      <Badge key={course.courseId} className="bg-brand-100 text-brand-800 hover:bg-brand-200">
                         {course.courseName}
                       </Badge>
                     ))
@@ -930,7 +930,7 @@ function StudentsModal({
         <div className="space-y-4">
           {loading ? (
             <div className="flex items-center justify-center py-8">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sky-600"></div>
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-brand-600"></div>
             </div>
           ) : Array.isArray(students) && students.length > 0 ? (
             students.map((student) => {

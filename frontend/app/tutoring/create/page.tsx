@@ -280,7 +280,7 @@ export default function CreateTutoringPage() {
               <ChevronLeft className="h-5 w-5" />
             </Button>
           </Link>
-          <h1 className="text-2xl font-bold text-sky-700">Crear Nueva Tutoría</h1>
+          <h1 className="text-2xl font-bold text-brand-700">Crear Nueva Tutoría</h1>
         </div>
 
         <Card className="mx-auto max-w-2xl">
@@ -419,7 +419,7 @@ export default function CreateTutoringPage() {
             </Button>
             <Button
               type="submit"
-              className="bg-sky-600 hover:bg-sky-700"
+              className="bg-brand-600 hover:bg-brand-700"
               disabled={
                 authLoading ||
                 !currentUserProfile ||

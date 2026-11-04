@@ -104,11 +104,11 @@ export default function RegisterPage() {
   }, []);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-sky-100 via-slate-50 to-sky-200 p-4">
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-brand-100 via-slate-50 to-brand-200 p-4">
       <Card className="w-full max-w-md shadow-2xl">
         <CardHeader className="text-center">
           <Link href="/" className="inline-block">
-            <h1 className="text-3xl font-bold tracking-tight text-sky-700">
+            <h1 className="text-3xl font-bold tracking-tight text-brand-700">
               TutorHub
             </h1>
           </Link>
@@ -160,7 +160,7 @@ export default function RegisterPage() {
                   type="button"
                   variant="ghost"
                   size="icon"
-                  className="absolute right-1 top-1/2 h-7 w-7 -translate-y-1/2 text-slate-500 hover:text-sky-600"
+                  className="absolute right-1 top-1/2 h-7 w-7 -translate-y-1/2 text-slate-500 hover:text-brand-600"
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
@@ -184,7 +184,7 @@ export default function RegisterPage() {
                   type="button"
                   variant="ghost"
                   size="icon"
-                  className="absolute right-1 top-1/2 h-7 w-7 -translate-y-1/2 text-slate-500 hover:text-sky-600"
+                  className="absolute right-1 top-1/2 h-7 w-7 -translate-y-1/2 text-slate-500 hover:text-brand-600"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 >
                   {showConfirmPassword ? (
@@ -202,7 +202,7 @@ export default function RegisterPage() {
                 onValueChange={handleRoleChange}
                 className="grid grid-cols-1 gap-3 sm:grid-cols-2"
               >
-                <div className="flex items-center space-x-2 rounded-md border border-slate-300 p-3 hover:border-sky-400 has-[input:checked]:border-sky-500 has-[input:checked]:bg-sky-50">
+                <div className="flex items-center space-x-2 rounded-md border border-slate-300 p-3 hover:border-brand-400 has-[input:checked]:border-brand-500 has-[input:checked]:bg-brand-50">
                   <RadioGroupItem value="STUDENT" id="student" />
                   <Label htmlFor="student" className="flex w-full flex-col">
                     <span className="font-medium text-slate-800">
@@ -213,7 +213,7 @@ export default function RegisterPage() {
                     </span>
                   </Label>
                 </div>
-                <div className="flex items-center space-x-2 rounded-md border border-slate-300 p-3 hover:border-sky-400 has-[input:checked]:border-sky-500 has-[input:checked]:bg-sky-50">
+                <div className="flex items-center space-x-2 rounded-md border border-slate-300 p-3 hover:border-brand-400 has-[input:checked]:border-brand-500 has-[input:checked]:bg-brand-50">
                   <RadioGroupItem value="TUTOR" id="tutor" />
                   <Label htmlFor="tutor" className="flex w-full flex-col">
                     <span className="font-medium text-slate-800">Tutor</span>
@@ -240,7 +240,7 @@ export default function RegisterPage() {
           <CardFooter className="flex flex-col space-y-4 pt-2">
             <Button
               type="submit"
-              className="w-full bg-sky-600 py-3 text-base hover:bg-sky-700"
+              className="w-full bg-brand-600 py-3 text-base hover:bg-brand-700"
               disabled={loading}
             >
               {loading ? "Registrando..." : "Crear Cuenta"}
@@ -261,7 +261,7 @@ export default function RegisterPage() {
               ¿Ya tienes una cuenta?{" "}
               <Link
                 href="/login"
-                className="font-medium text-sky-600 underline-offset-4 hover:text-sky-700 hover:underline"
+                className="font-medium text-brand-600 underline-offset-4 hover:text-brand-700 hover:underline"
               >
                 Iniciar sesión
               </Link>

@@ -102,7 +102,7 @@ export default function ProfilePage() {
     <div className="flex min-h-screen flex-col"> {/* Envoltura principal para header y contenido */}
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center">
-          <span className="text-xl font-bold text-sky-600 cursor-default select-none">TUTORHUB</span>
+          <span className="text-xl font-bold text-brand-600 cursor-default select-none">TUTORHUB</span>
           <nav className="ml-auto flex gap-4 sm:gap-6">
             <Link
               href="/tutoring"
@@ -124,7 +124,7 @@ export default function ProfilePage() {
             </Link>
             <Link
               href="/profile"
-              className="text-sm font-medium text-foreground border-b-2 border-sky-600 pb-1"
+              className="text-sm font-medium text-foreground border-b-2 border-brand-600 pb-1"
             >
               Mi Perfil
             </Link>
@@ -139,7 +139,7 @@ export default function ProfilePage() {
               <ChevronLeft className="h-5 w-5" />
             </Button>
           </Link>
-          <h1 className="text-2xl font-bold text-sky-700">Mi Perfil</h1> {/* Título general de perfil */}
+          <h1 className="text-2xl font-bold text-brand-700">Mi Perfil</h1> {/* Título general de perfil */}
         </div>
 
         <div className="flex flex-col gap-6 md:flex-row">
@@ -163,19 +163,19 @@ export default function ProfilePage() {
             <CardContent>
               <div className="space-y-4">
                 <div>
-                  <h3 className="font-medium text-sky-700">Universidad</h3>
+                  <h3 className="font-medium text-brand-700">Universidad</h3>
                   <p className="text-sm text-muted-foreground">
                     {profile.university}
                   </p>
                 </div>
                 <div>
-                  <h3 className="font-medium text-sky-700">Carrera</h3>
+                  <h3 className="font-medium text-brand-700">Carrera</h3>
                   <p className="text-sm text-muted-foreground">
                     {profile.degree}
                   </p>
                 </div>
                 <div>
-                  <h3 className="font-medium text-sky-700">Año</h3>
+                  <h3 className="font-medium text-brand-700">Año</h3>
                   <p className="text-sm text-muted-foreground">
                     {profile.year}
                   </p>
@@ -327,7 +327,7 @@ export default function ProfilePage() {
                     </div>
                     <Button
                       onClick={addCourse}
-                      className="w-full bg-sky-600 hover:bg-sky-700"
+                      className="w-full bg-brand-600 hover:bg-brand-700"
                     >
                       <Plus className="mr-2 h-4 w-4" />
                       Agregar Curso
@@ -411,7 +411,7 @@ export default function ProfilePage() {
                     </div>
                     <Button
                       onClick={addSchedule}
-                      className="w-full bg-sky-600 hover:bg-sky-700"
+                      className="w-full bg-brand-600 hover:bg-brand-700"
                     >
                       <Plus className="mr-2 h-4 w-4" />
                       Agregar Horario

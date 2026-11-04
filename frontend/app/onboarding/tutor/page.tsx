@@ -136,7 +136,7 @@ export default function TutorOnboardingPage() {
             <ChevronLeft className="h-5 w-5" />
           </Button>
         </Link>
-        <h1 className="text-2xl font-bold text-sky-700">Completa tu perfil de tutor</h1>
+        <h1 className="text-2xl font-bold text-brand-700">Completa tu perfil de tutor</h1>
       </div>
 
       <Card className="mx-auto max-w-2xl">
@@ -213,7 +213,7 @@ export default function TutorOnboardingPage() {
                     <div key={course.id} className="flex items-center justify-between rounded-lg border p-3">
                       <div className="flex items-center gap-2">
                         <span>{course.name}</span>
-                        <Badge variant="outline" className="bg-sky-50 text-sky-700">
+                        <Badge variant="outline" className="bg-brand-50 text-brand-700">
                           {course.level}
                         </Badge>
                         <Badge variant="outline" className="bg-green-50 text-green-700">
@@ -288,7 +288,7 @@ export default function TutorOnboardingPage() {
             <Button variant="outline" type="button" onClick={() => router.push("/")}>
               Omitir por ahora
             </Button>
-            <Button type="submit" className="bg-sky-600 hover:bg-sky-700" disabled={loading}>
+            <Button type="submit" className="bg-brand-600 hover:bg-brand-700" disabled={loading}>
               {loading ? "Guardando..." : "Guardar y continuar"}
             </Button>
           </CardFooter>

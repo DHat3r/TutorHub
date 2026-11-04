@@ -323,7 +323,7 @@ export default function StudentProfilePage() {
             <ChevronLeft className="h-5 w-5" />
           </Button>
         </Link>
-        <h1 className="text-2xl font-bold text-sky-700">
+        <h1 className="text-2xl font-bold text-brand-700">
           Mi Perfil de Estudiante
         </h1>{" "}
         {/* Título similar */}
@@ -357,20 +357,20 @@ export default function StudentProfilePage() {
                 {" "}
                 {/* Espaciado similar */}
                 <div>
-                  <h3 className="font-medium text-sky-700">Universidad</h3>{" "}
+                  <h3 className="font-medium text-brand-700">Universidad</h3>{" "}
                   {/* Estilo de subtítulo */}
                   <p className="text-sm text-muted-foreground">
                     {profile.university || "No especificada"}
                   </p>
                 </div>
                 <div>
-                  <h3 className="font-medium text-sky-700">Carrera</h3>
+                  <h3 className="font-medium text-brand-700">Carrera</h3>
                   <p className="text-sm text-muted-foreground">
                     {profile.degree || "No especificada"}
                   </p>
                 </div>
                 <div>
-                  <h3 className="font-medium text-sky-700">Año</h3>
+                  <h3 className="font-medium text-brand-700">Año</h3>
                   <p className="text-sm text-muted-foreground">
                     {profile.year || "No especificado"}
                   </p>
@@ -389,7 +389,7 @@ export default function StudentProfilePage() {
               </Button>
               {/* Puedes agregar aquí un botón "Convertirme en tutor" si es pertinente */}
               <Link href="/profile/convert-to-tutor" className="w-full">
-                <Button className="w-full bg-sky-600 hover:bg-sky-700">
+                <Button className="w-full bg-brand-600 hover:bg-brand-700">
                   Convertirme en tutor
                 </Button>
               </Link>
@@ -523,12 +523,12 @@ export default function StudentProfilePage() {
                         <Badge
                           key={interest.id}
                           variant="secondary"
-                          className="flex items-center gap-1 text-sm py-1 px-2 bg-sky-100 text-sky-800" /* Estilo de Badge similar al tutor */
+                          className="flex items-center gap-1 text-sm py-1 px-2 bg-brand-100 text-brand-800" /* Estilo de Badge similar al tutor */
                         >
                           {interest.name}
                           <button
                             onClick={() => removeInterest(interest.id)}
-                            className="ml-1 rounded-full p-0.5 hover:bg-sky-200" /* Estilo de hover */
+                            className="ml-1 rounded-full p-0.5 hover:bg-brand-200" /* Estilo de hover */
                             aria-label={`Eliminar ${interest.name}`}
                           >
                             <Trash2 className="h-3 w-3" />
@@ -570,7 +570,7 @@ export default function StudentProfilePage() {
                 </CardContent>
                 {/* Botón de Guardar Global (o por pestaña si se prefiere) */}
                 {/* <CardFooter className="flex justify-end pt-6"> 
-                  <Button onClick={saveProfile} disabled={saving} className="bg-sky-600 hover:bg-sky-700">
+                  <Button onClick={saveProfile} disabled={saving} className="bg-brand-600 hover:bg-brand-700">
                     <Save className="mr-2 h-4 w-4" />
                     {saving ? "Guardando..." : "Guardar Cambios Académicos"}
                   </Button>

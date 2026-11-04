@@ -316,7 +316,7 @@ export default function TutoringDetailsPage() {
               <ChevronLeft className="h-5 w-5" />
             </Button>
           </Link>
-          <h1 className="text-2xl font-bold text-sky-700">Detalles de la Tutoría</h1>
+          <h1 className="text-2xl font-bold text-brand-700">Detalles de la Tutoría</h1>
         </div>
         <div className="grid gap-6 md:grid-cols-3">
           <div className="md:col-span-2">
@@ -326,7 +326,7 @@ export default function TutoringDetailsPage() {
                   <div>
                     <CardTitle className="text-2xl">{tutoring.title}</CardTitle>
                     <CardDescription className="mt-1">
-                      <Badge variant="outline" className="bg-sky-50 text-sky-700">
+                      <Badge variant="outline" className="bg-brand-50 text-brand-700">
                         {tutoring.course?.name || "N/A"}
                       </Badge>
                     </CardDescription>
@@ -356,26 +356,26 @@ export default function TutoringDetailsPage() {
               </CardHeader>
               <CardContent className="space-y-6">
                 <div>
-                  <h3 className="mb-2 font-medium text-sky-700">Descripción</h3>
+                  <h3 className="mb-2 font-medium text-brand-700">Descripción</h3>
                   <p className="text-muted-foreground">{tutoring.description}</p>
                 </div>
                 <div className="grid gap-4 md:grid-cols-2">
                   <div className="flex items-center gap-2">
-                    <Calendar className="h-5 w-5 text-sky-600" />
+                    <Calendar className="h-5 w-5 text-brand-600" />
                     <div>
                       <p className="font-medium">Horario</p>
                       <p className="text-sm text-muted-foreground">{schedule}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Clock className="h-5 w-5 text-sky-600" />
+                    <Clock className="h-5 w-5 text-brand-600" />
                     <div>
                       <p className="font-medium">Duración</p>
                       <p className="text-sm text-muted-foreground">{duration}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <MapPin className="h-5 w-5 text-sky-600" />
+                    <MapPin className="h-5 w-5 text-brand-600" />
                     <div>
                       <p className="font-medium">Ubicación</p>
                       <p className="text-sm text-muted-foreground">{tutoring.location || "No especificada"}</p>
@@ -400,7 +400,7 @@ export default function TutoringDetailsPage() {
                   </Button>
                 ) : (
                   <Button
-                    className="w-full bg-sky-600 hover:bg-sky-700"
+                    className="w-full bg-brand-600 hover:bg-brand-700"
                     onClick={handleBookTutoring}
                     disabled={
                       !isAvailableForNewBookings || isPastSession || bookingStatus === "loading" || !currentUser
@@ -491,17 +491,17 @@ export default function TutoringDetailsPage() {
                 </div>
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
-                    <User className="h-4 w-4 text-sky-600" />
+                    <User className="h-4 w-4 text-brand-600" />
                     <p className="text-sm text-muted-foreground">
                       {tutoring.tutor?.university || "Universidad no especificada"}
                     </p>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Calendar className="h-4 w-4 text-sky-600" />
+                    <Calendar className="h-4 w-4 text-brand-600" />
                     <p className="text-sm text-muted-foreground">{formatAcademicYear(tutoring.tutor?.academic_year)}</p>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Mail className="h-4 w-4 text-sky-600" />
+                    <Mail className="h-4 w-4 text-brand-600" />
                     <div>
                       <p className="font-medium">Email Tutorías</p>
                       <p className="text-sm text-muted-foreground">
@@ -648,7 +648,7 @@ function ContactForm({
         <Button
           type="submit"
           disabled={isSubmitting || !message.trim() || !!messageError}
-          className="bg-sky-600 hover:bg-sky-700"
+          className="bg-brand-600 hover:bg-brand-700"
         >
           {isSubmitting ? "Enviando..." : "Enviar mensaje"}
         </Button>

@@ -17,7 +17,25 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+      },
       colors: {
+        // Paleta propia de TutorHub: cian como acento y azul marino como base.
+        // Reemplaza al sky de Tailwind que usaba LinkUDP; cambiar aquí cambia toda la app.
+        brand: {
+          50: "#EAF8FD",
+          100: "#D2F0FA",
+          200: "#A6E1F5",
+          300: "#6FCDEE",
+          400: "#33B8E6",
+          500: "#0EA5DB",
+          600: "#0A8BBF",
+          700: "#0B6E99",
+          800: "#0D4F73",
+          900: "#0B2E4F",
+          950: "#071C33",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

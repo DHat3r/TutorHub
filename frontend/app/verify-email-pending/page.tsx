@@ -46,8 +46,8 @@ export default function VerifyEmailPendingPage() {
     <div className="flex min-h-screen flex-col items-center justify-center bg-gray-100 dark:bg-gray-900 p-4">
       <Card className="w-full max-w-lg text-center">
         <CardHeader>
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-sky-100 dark:bg-sky-900 mb-4">
-            <Hourglass className="h-10 w-10 text-sky-600" />
+          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-brand-100 dark:bg-brand-900 mb-4">
+            <Hourglass className="h-10 w-10 text-brand-600" />
           </div>
           <CardTitle className="text-2xl">Verificación de Correo Pendiente</CardTitle>
           <CardDescription>
@@ -64,7 +64,7 @@ export default function VerifyEmailPendingPage() {
         </CardContent>
         <CardFooter className="flex flex-col gap-4">
           <Button 
-            className="w-full bg-sky-600 hover:bg-sky-700" 
+            className="w-full bg-brand-600 hover:bg-brand-700" 
             onClick={handleAlreadyVerifiedClick}
             disabled={loading}
           >

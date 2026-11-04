@@ -47,12 +47,12 @@ export default function LoginPage() {
 
   return (
     <div className="container flex h-screen w-screen flex-col items-center justify-center">
-      <span className="text-xl font-bold text-sky-600 cursor-default select-none">
+      <span className="text-xl font-bold text-brand-600 cursor-default select-none">
         TUTORHUB
       </span>
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold tracking-tight text-sky-700">
+          <CardTitle className="text-2xl font-bold tracking-tight text-brand-700">
             Iniciar sesión
           </CardTitle>
           <CardDescription>
@@ -85,14 +85,14 @@ export default function LoginPage() {
               />
             </div>
             <div className="text-right text-sm">
-              <Link href="/login/forgot" className="text-sky-600 hover:underline">
+              <Link href="/login/forgot" className="text-brand-600 hover:underline">
                 ¿Olvidaste tu contraseña?
               </Link>
             </div>
             {error && <p className="text-sm text-red-500">{error}</p>}
           </CardContent>
           <CardFooter className="flex flex-col space-y-4">
-            <Button type="submit" className="w-full bg-sky-600 hover:bg-sky-700" disabled={loading}>
+            <Button type="submit" className="w-full bg-brand-600 hover:bg-brand-700" disabled={loading}>
               {loading ? 'Ingresando...' : 'Iniciar sesión'}
             </Button>
             <Button

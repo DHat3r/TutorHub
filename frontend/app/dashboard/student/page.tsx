@@ -260,7 +260,7 @@
 		<div className="container px-4 py-10 md:px-6">
 		  <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
 		    <div>
-		      <h1 className="text-3xl font-bold tracking-tight text-sky-700">
+		      <h1 className="text-3xl font-bold tracking-tight text-brand-700">
 		        Dashboard de Estudiante
 		      </h1>
 		      <p className="text-muted-foreground">
@@ -269,7 +269,7 @@
 		    </div>
 		    <div className="flex items-center gap-2">
 		      <Link href="/tutoring">
-		        <Button className="bg-sky-600 hover:bg-sky-700">
+		        <Button className="bg-brand-600 hover:bg-brand-700">
 		          <Search className="mr-2 h-4 w-4" />
 		          Buscar Tutorías
 		        </Button>
@@ -296,7 +296,7 @@
 		                  </CardTitle>
 		                  <Badge
 		                    variant="outline"
-		                    className="bg-sky-50 text-sky-700"
+		                    className="bg-brand-50 text-brand-700"
 		                  >
 		                    {booking.area}
 		                  </Badge>
@@ -313,15 +313,15 @@
 		              <CardContent>
 		                <div className="grid gap-2">
 		                  <div className="flex items-center gap-2 text-sm">
-		                    <Calendar className="h-4 w-4 text-sky-600" />
+		                    <Calendar className="h-4 w-4 text-brand-600" />
 		                    <span>{booking.date}</span>
 		                  </div>
 		                  <div className="flex items-center gap-2 text-sm">
-		                    <Clock className="h-4 w-4 text-sky-600" />
+		                    <Clock className="h-4 w-4 text-brand-600" />
 		                    <span>{booking.time}</span>
 		                  </div>
 		                  <div className="flex items-center gap-2 text-sm">
-		                    <MapPin className="h-4 w-4 text-sky-600" />
+		                    <MapPin className="h-4 w-4 text-brand-600" />
 		                    <span>{booking.location}</span>
 		                  </div>
 		                </div>
@@ -351,7 +351,7 @@
 		              tutor.
 		            </p>
 		            <Link href="/tutoring">
-		              <Button className="bg-sky-600 hover:bg-sky-700">
+		              <Button className="bg-brand-600 hover:bg-brand-700">
 		                Buscar Tutorías
 		              </Button>
 		            </Link>
@@ -364,7 +364,7 @@
 		        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 		          {recommendedTutoringsData.map((tutoring) => (
 		            <Link href={`/tutoring/${tutoring.id}`} key={tutoring.id}>
-		              <Card className="h-full overflow-hidden transition-all hover:border-sky-300 hover:shadow-md">
+		              <Card className="h-full overflow-hidden transition-all hover:border-brand-300 hover:shadow-md">
 		                <CardHeader className="pb-2">
 		                  <div className="flex items-center justify-between">
 		                    <CardTitle className="text-lg font-medium">
@@ -372,7 +372,7 @@
 		                    </CardTitle>
 		                    <Badge
 		                      variant="outline"
-		                      className="bg-sky-50 text-sky-700"
+		                      className="bg-brand-50 text-brand-700"
 		                    >
 		                      {tutoring.area}
 		                    </Badge>
@@ -467,7 +467,7 @@
 		                  </CardTitle>
 		                  <Badge
 		                    variant="outline"
-		                    className="bg-sky-50 text-sky-700"
+		                    className="bg-brand-50 text-brand-700"
 		                  >
 		                    {tutoring.course?.name || "N/A"}
 		                  </Badge>
@@ -484,15 +484,15 @@
 		              <CardContent>
 		                <div className="grid gap-2">
 		                  <div className="flex items-center gap-2 text-sm">
-		                    <Calendar className="h-4 w-4 text-sky-600" />
+		                    <Calendar className="h-4 w-4 text-brand-600" />
 		                    <span>{formatDateUTC(tutoring.start_time)}</span>
 		                  </div>
 		                  <div className="flex items-center gap-2 text-sm">
-		                    <Clock className="h-4 w-4 text-sky-600" />
+		                    <Clock className="h-4 w-4 text-brand-600" />
 		                    <span>{new Date(tutoring.start_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - {new Date(tutoring.end_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
 		                  </div>
 		                  <div className="flex items-center gap-2 text-sm">
-		                    <MapPin className="h-4 w-4 text-sky-600" />
+		                    <MapPin className="h-4 w-4 text-brand-600" />
 		                    <span>{tutoring.location || "Online"}</span>
 		                  </div>
 		                </div>
@@ -521,7 +521,7 @@
 		              Guarda tutorías para verlas más tarde.
 		            </p>
 		            <Link href="/tutoring">
-		              <Button className="bg-sky-600 hover:bg-sky-700">
+		              <Button className="bg-brand-600 hover:bg-brand-700">
 		                Explorar Tutorías
 		              </Button>
 		            </Link>
@@ -545,7 +545,7 @@
 		            {dashboardProfile.interests.map((interest) => (
 		              <Badge
 		                key={interest.courseId}
-		                className="bg-sky-100 text-sky-800 hover:bg-sky-200"
+		                className="bg-brand-100 text-brand-800 hover:bg-brand-200"
 		              >
 		                {interest.courseName}
 		              </Badge>
@@ -585,7 +585,7 @@
 		        {/* que quizás llame a un endpoint PATCH /profile/me/convert-to-tutor o similar */}
 		        {/* o simplemente actualice el rol del usuario en /profile/me */}
 		        <Link href="/profile/student">
-		          <Button className="bg-sky-600 hover:bg-sky-700">
+		          <Button className="bg-brand-600 hover:bg-brand-700">
 		            Convertirme en tutor
 		          </Button>
 		        </Link>

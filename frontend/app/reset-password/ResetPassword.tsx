@@ -59,12 +59,12 @@ export default function ResetPasswordPage() {
 
   return (
     <div className="container flex h-screen w-screen flex-col items-center justify-center">
-      <span className="text-xl font-bold text-sky-600 cursor-default select-none">
+      <span className="text-xl font-bold text-brand-600 cursor-default select-none">
         TUTORHUB
       </span>
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle className="text-2xl text-sky-700">Restablecer contraseña</CardTitle>
+          <CardTitle className="text-2xl text-brand-700">Restablecer contraseña</CardTitle>
         </CardHeader>
         <CardContent>
           {error && <p className="text-red-600 text-sm mb-4">{error}</p>}
@@ -94,7 +94,7 @@ export default function ResetPasswordPage() {
                   required
                 />
               </div>
-              <Button type="submit" className="bg-sky-600 hover:bg-sky-700">
+              <Button type="submit" className="bg-brand-600 hover:bg-brand-700">
                 Cambiar contraseña
               </Button>
             </form>

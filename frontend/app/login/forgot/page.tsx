@@ -43,12 +43,12 @@ export default function ForgotPasswordPage() {
 
   return (
     <div className="container flex h-screen w-screen flex-col items-center justify-center">
-      <span className="text-xl font-bold text-sky-600 cursor-default select-none">
+      <span className="text-xl font-bold text-brand-600 cursor-default select-none">
         TUTORHUB
       </span>
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold tracking-tight text-sky-700">
+          <CardTitle className="text-2xl font-bold tracking-tight text-brand-700">
             Recuperar contraseña
           </CardTitle>
           <CardDescription>
@@ -80,7 +80,7 @@ export default function ForgotPasswordPage() {
           <CardFooter className="flex flex-col space-y-4">
             <Button
               type="submit"
-              className="w-full bg-sky-600 hover:bg-sky-700"
+              className="w-full bg-brand-600 hover:bg-brand-700"
               disabled={submitted || loading}
             >
               {loading ? 'Enviando...' : 'Enviar enlace'}

@@ -232,7 +232,7 @@ export default function EditTutoringPage() {
         <div className="mx-auto max-w-2xl">
           <Card>
             <CardHeader>
-              <CardTitle className="text-2xl text-sky-700">Editar Tutoría</CardTitle>
+              <CardTitle className="text-2xl text-brand-700">Editar Tutoría</CardTitle>
               <CardDescription>Actualiza los detalles de tu tutoría.</CardDescription>
             </CardHeader>
             <form onSubmit={handleSubmit}>
@@ -311,7 +311,7 @@ export default function EditTutoringPage() {
               </CardContent>
               <CardFooter className="flex justify-end gap-2">
                 <Button type="button" variant="outline" onClick={() => router.back()}>Cancelar</Button>
-                <Button type="submit" className="bg-sky-600 hover:bg-sky-700" disabled={saving || isPastSession}>
+                <Button type="submit" className="bg-brand-600 hover:bg-brand-700" disabled={saving || isPastSession}>
                   {saving ? (<><Clock className="mr-2 h-4 w-4 animate-spin" /> Guardando...</>) : "Guardar Cambios"}
                 </Button>
               </CardFooter>

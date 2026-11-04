@@ -195,7 +195,7 @@ export default function CalendarPage() {
         className={cn(
           isMobile ? 'h-16' : 'h-24 md:h-28',
           "border border-border/20 bg-background p-1 md:p-2 overflow-y-auto cursor-pointer hover:bg-slate-100", // hover:bg-muted/50 a hover:bg-slate-100
-          isSelectedForDetails ? "ring-2 ring-inset ring-sky-600" : "ring-transparent"
+          isSelectedForDetails ? "ring-2 ring-inset ring-brand-600" : "ring-transparent"
         )}
         onClick={() => handleDayClick(day)}
       >
@@ -204,8 +204,8 @@ export default function CalendarPage() {
             className={cn(
               isMobile ? 'text-xs' : 'text-sm',
               "font-medium",
-              isToday ? "bg-sky-600 text-white rounded-full w-5 h-5 md:w-6 md:h-6 flex items-center justify-center" : "", // bg-primary a bg-sky-600, text-primary-foreground a text-white
-              isSelectedForDetails ? "font-bold text-sky-700" : "" // text-primary a text-sky-700
+              isToday ? "bg-brand-600 text-white rounded-full w-5 h-5 md:w-6 md:h-6 flex items-center justify-center" : "", // bg-primary a bg-brand-600, text-primary-foreground a text-white
+              isSelectedForDetails ? "font-bold text-brand-700" : "" // text-primary a text-brand-700
             )}
           >
             {day}
@@ -213,7 +213,7 @@ export default function CalendarPage() {
           {dayEvents.length > 0 && (
             <span className={cn(
               "text-xs px-1.5 py-0.5 rounded-full",
-              isSelectedForDetails ? "bg-sky-600 text-white" : "bg-sky-100 text-sky-700" // bg-primary a bg-sky-600, text-primary-foreground a text-white, bg-primary/10 a bg-sky-100, text-primary a text-sky-700
+              isSelectedForDetails ? "bg-brand-600 text-white" : "bg-brand-100 text-brand-700" // bg-primary a bg-brand-600, text-primary-foreground a text-white, bg-primary/10 a bg-brand-100, text-primary a text-brand-700
             )}>
               {dayEvents.length}
             </span>
@@ -226,8 +226,8 @@ export default function CalendarPage() {
                 key={event.id}
                 className={cn(
                   "w-full text-left text-xs truncate rounded px-1.5 py-0.5 cursor-pointer",
-                  "bg-sky-100 text-sky-700 hover:bg-sky-200",
-                  isSelectedForDetails && selectedEvent?.id === event.id ? "bg-sky-600 text-white" : ""
+                  "bg-brand-100 text-brand-700 hover:bg-brand-200",
+                  isSelectedForDetails && selectedEvent?.id === event.id ? "bg-brand-600 text-white" : ""
                 )}
                 onClick={(e) => {
                   e.stopPropagation();
@@ -286,7 +286,7 @@ export default function CalendarPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.1 }}
         >
-          <h2 className="text-xl font-bold tracking-tight text-sky-700">
+          <h2 className="text-xl font-bold tracking-tight text-brand-700">
             Calendario
           </h2>
           <p className="text-muted-foreground text-sm">Visualiza y planifica tus tutorías</p>
@@ -378,7 +378,7 @@ export default function CalendarPage() {
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogContent className="w-[95vw] max-w-md">
             <DialogHeader>
-              <DialogTitle className="text-lg text-sky-700">{selectedEvent?.title || "Detalle del Evento"}</DialogTitle>
+              <DialogTitle className="text-lg text-brand-700">{selectedEvent?.title || "Detalle del Evento"}</DialogTitle>
               <DialogDescription>Detalles de la tutoría</DialogDescription>
             </DialogHeader>
             {selectedEvent && (
@@ -386,7 +386,7 @@ export default function CalendarPage() {
                 <CardContent className="p-0 pt-4">
                   <div className="space-y-4">
                     <div className="flex items-start gap-4">
-                      <CalendarIcon className="h-5 w-5 text-sky-600 mt-1" />
+                      <CalendarIcon className="h-5 w-5 text-brand-600 mt-1" />
                       <div>
                         <p className="font-semibold">Fecha y Hora</p>
                         <p className="text-sm text-muted-foreground">
@@ -395,14 +395,14 @@ export default function CalendarPage() {
                       </div>
                     </div>
                     <div className="flex items-start gap-4">
-                      <User className="h-5 w-5 text-sky-600 mt-1" />
+                      <User className="h-5 w-5 text-brand-600 mt-1" />
                       <div>
                         <p className="font-semibold">Tutor</p>
                         <p className="text-sm text-muted-foreground">{selectedEvent.tutorName || "No especificado"}</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-4">
-                      <BookOpen className="h-5 w-5 text-sky-600 mt-1" />
+                      <BookOpen className="h-5 w-5 text-brand-600 mt-1" />
                       <div>
                         <p className="font-semibold">Curso</p>
                         <p className="text-sm text-muted-foreground">{selectedEvent.courseName || "No especificado"}</p>
@@ -417,7 +417,7 @@ export default function CalendarPage() {
                 Cerrar
               </Button>
               <Link href={`/tutoring/${selectedEvent?.id}`} passHref>
-                <Button size="sm" className="w-full sm:w-auto bg-sky-600 hover:bg-sky-700">
+                <Button size="sm" className="w-full sm:w-auto bg-brand-600 hover:bg-brand-700">
                   Ver Detalles
                 </Button>
               </Link>
@@ -445,7 +445,7 @@ export default function CalendarPage() {
         transition={{ duration: 0.3, delay: 0.1 }}
       >
         <div>
-          <h2 className="text-2xl font-bold tracking-tight text-sky-700">Calendario de Tutorías</h2>
+          <h2 className="text-2xl font-bold tracking-tight text-brand-700">Calendario de Tutorías</h2>
           <p className="text-muted-foreground mt-1">Visualiza y gestiona tus tutorías programadas.</p>
         </div>
         {/* Select de vista y botón Crear Tutoría eliminados de la vista de escritorio */}
@@ -466,7 +466,7 @@ export default function CalendarPage() {
           <Card className="h-full">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
             <div className="flex items-center space-x-2">
-              <CalendarIcon className="h-5 w-5 text-sky-600" />
+              <CalendarIcon className="h-5 w-5 text-brand-600" />
               <CardTitle>
                 {monthName} {currentYear}
               </CardTitle>
@@ -559,7 +559,7 @@ export default function CalendarPage() {
               <p><strong>Hora:</strong> {selectedEvent?.start_time} - {selectedEvent?.end_time}</p>
                {selectedEvent && (
                 <Link href={`/tutoring/${selectedEvent.id}`} passHref>
-                   <Button variant="link" size="sm" className="p-0 h-auto text-sky-600">Ver detalles completos de la tutoría</Button>
+                   <Button variant="link" size="sm" className="p-0 h-auto text-brand-600">Ver detalles completos de la tutoría</Button>
                 </Link>
                )}
             </div>

@@ -445,7 +445,7 @@ export default function TutorProfileEditPageOriginalDesign() {
   if (isFetching || authLoading) {
     return (
       <div className="flex min-h-screen items-center justify-center">
-        <Clock className="h-8 w-8 animate-spin text-sky-600" />
+        <Clock className="h-8 w-8 animate-spin text-brand-600" />
         <p className="ml-3">Cargando...</p>
       </div>
     );
@@ -470,7 +470,7 @@ export default function TutorProfileEditPageOriginalDesign() {
               <ChevronLeft className="h-5 w-5" />
             </Button>
           </Link>
-          <h1 className="text-3xl font-bold text-sky-700">
+          <h1 className="text-3xl font-bold text-brand-700">
             Editar Perfil de Tutor
           </h1>
         </div>
@@ -666,7 +666,7 @@ export default function TutorProfileEditPageOriginalDesign() {
               <Button
                 onClick={saveProfileData}
                 disabled={isSaving}
-                className="ml-auto bg-sky-600 hover:bg-sky-700"
+                className="ml-auto bg-brand-600 hover:bg-brand-700"
               >
                 <Save className="mr-2 h-4 w-4" />
                 {isSaving ? "Guardando..." : "Guardar Información"}
@@ -755,7 +755,7 @@ export default function TutorProfileEditPageOriginalDesign() {
               <Button
                 onClick={saveProfileData}
                 disabled={isSaving}
-                className="ml-auto bg-sky-600 hover:bg-sky-700"
+                className="ml-auto bg-brand-600 hover:bg-brand-700"
               >
                 <Save className="mr-2 h-4 w-4" />
                 {isSaving ? "Guardando..." : "Guardar Cursos"} {/* Changed "Expertise" to "Cursos" */}
@@ -790,7 +790,7 @@ export default function TutorProfileEditPageOriginalDesign() {
             </CardContent>
             <CardFooter className="flex justify-end">
               <Link href="/availability/tutor">
-                <Button className="bg-sky-600 hover:bg-sky-700 text-white">
+                <Button className="bg-brand-600 hover:bg-brand-700 text-white">
                   Editar mi Disponibilidad
                 </Button>
               </Link>

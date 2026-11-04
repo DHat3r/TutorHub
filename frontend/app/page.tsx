@@ -14,9 +14,9 @@ export default function Home() {
     <div className="flex flex-col min-h-screen bg-white">
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="w-full py-20 md:py-32 bg-sky-50">
+        <section className="w-full py-20 md:py-32 bg-brand-50">
           <div className="container px-4 md:px-6 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-sky-800">
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-brand-800">
               Tu Éxito Académico Comienza Aquí
             </h1>
             <p className="mt-4 max-w-2xl mx-auto text-lg text-gray-600">
@@ -27,19 +27,19 @@ export default function Home() {
                 <>
                   {user ? (
                     <Link href={dashboardHref}>
-                      <Button size="lg" className="bg-sky-600 text-white hover:bg-sky-700">
+                      <Button size="lg" className="bg-brand-600 text-white hover:bg-brand-700">
                         Ir al Dashboard <LayoutDashboard className="ml-2 h-5 w-5" />
                       </Button>
                     </Link>
                   ) : (
                     <>
                       <Link href="/register">
-                        <Button size="lg" className="bg-sky-600 text-white hover:bg-sky-700">
+                        <Button size="lg" className="bg-brand-600 text-white hover:bg-brand-700">
                           Comenzar Ahora <ArrowRight className="ml-2 h-5 w-5" />
                         </Button>
                       </Link>
                       <Link href="/login">
-                        <Button size="lg" variant="outline" className="text-sky-600 border-sky-600 hover:bg-sky-100">
+                        <Button size="lg" variant="outline" className="text-brand-600 border-brand-600 hover:bg-brand-100">
                           Iniciar Sesión
                         </Button>
                       </Link>
@@ -62,7 +62,7 @@ export default function Home() {
             </p>
             <div className="mt-12 grid gap-8 md:grid-cols-3">
               <div className="flex flex-col items-center text-center p-6">
-                <div className="flex items-center justify-center h-16 w-16 rounded-full bg-sky-100 text-sky-600">
+                <div className="flex items-center justify-center h-16 w-16 rounded-full bg-brand-100 text-brand-600">
                   <Users className="h-8 w-8" />
                 </div>
                 <h3 className="mt-6 text-xl font-bold text-gray-800">1. Regístrate</h3>
@@ -71,7 +71,7 @@ export default function Home() {
                 </p>
               </div>
               <div className="flex flex-col items-center text-center p-6">
-                <div className="flex items-center justify-center h-16 w-16 rounded-full bg-sky-100 text-sky-600">
+                <div className="flex items-center justify-center h-16 w-16 rounded-full bg-brand-100 text-brand-600">
                   <BookOpen className="h-8 w-8" />
                 </div>
                 <h3 className="mt-6 text-xl font-bold text-gray-800">2. Explora</h3>
@@ -80,7 +80,7 @@ export default function Home() {
                 </p>
               </div>
               <div className="flex flex-col items-center text-center p-6">
-                <div className="flex items-center justify-center h-16 w-16 rounded-full bg-sky-100 text-sky-600">
+                <div className="flex items-center justify-center h-16 w-16 rounded-full bg-brand-100 text-brand-600">
                   <Calendar className="h-8 w-8" />
                 </div>
                 <h3 className="mt-6 text-xl font-bold text-gray-800">3. Agenda</h3>
@@ -100,19 +100,19 @@ export default function Home() {
             </h2>
             <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               <div className="p-6 bg-white border rounded-lg shadow-sm">
-                <h3 className="text-xl font-bold text-sky-700">Tutores Verificados</h3>
+                <h3 className="text-xl font-bold text-brand-700">Tutores Verificados</h3>
                 <p className="mt-2 text-gray-500">
                   Todos nuestros tutores son estudiantes de la UDP con excelente rendimiento académico.
                 </p>
               </div>
               <div className="p-6 bg-white border rounded-lg shadow-sm">
-                <h3 className="text-xl font-bold text-sky-700">Flexibilidad de Horarios</h3>
+                <h3 className="text-xl font-bold text-brand-700">Flexibilidad de Horarios</h3>
                 <p className="mt-2 text-gray-500">
                   Agenda tutorías en los horarios que mejor se adapten a tu vida universitaria.
                 </p>
               </div>
               <div className="p-6 bg-white border rounded-lg shadow-sm">
-                <h3 className="text-xl font-bold text-sky-700">Feedback y Calificaciones</h3>
+                <h3 className="text-xl font-bold text-brand-700">Feedback y Calificaciones</h3>
                 <p className="mt-2 text-gray-500">
                   Deja tu opinión sobre las tutorías y ayuda a otros a encontrar al mejor tutor.
                 </p>

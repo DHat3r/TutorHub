@@ -43,7 +43,7 @@ export default function VerifyClient() {
           </CardDescription>
         </CardHeader>
         <CardContent className="flex flex-col items-center justify-center space-y-4">
-          {status === 'loading' && <Loader className="h-16 w-16 animate-spin text-sky-600" />}
+          {status === 'loading' && <Loader className="h-16 w-16 animate-spin text-brand-600" />}
           {status === 'success' && <CheckCircle2 className="h-16 w-16 text-green-500" />}
           {status === 'error' && <XCircle className="h-16 w-16 text-red-500" />}
           <p className={`text-lg text-center ${status === 'error' ? 'text-red-600' : 'text-gray-700 dark:text-gray-300'}`}>
@@ -52,7 +52,7 @@ export default function VerifyClient() {
         </CardContent>
         <CardFooter>
           {status === 'success' && (
-            <Button className="w-full bg-sky-600 hover:bg-sky-700" onClick={() => router.push('/login')}>
+            <Button className="w-full bg-brand-600 hover:bg-brand-700" onClick={() => router.push('/login')}>
               Ir a Iniciar Sesión
             </Button>
           )}

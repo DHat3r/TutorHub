@@ -93,7 +93,7 @@ export default function StudentOnboardingPage() {
             <ChevronLeft className="h-5 w-5" />
           </Button>
         </Link>
-        <h1 className="text-2xl font-bold text-sky-700">Completa tu perfil de estudiante</h1>
+        <h1 className="text-2xl font-bold text-brand-700">Completa tu perfil de estudiante</h1>
       </div>
 
       <Card className="mx-auto max-w-2xl">
@@ -183,7 +183,7 @@ export default function StudentOnboardingPage() {
             <Button variant="outline" type="button" onClick={() => router.push("/")}>
               Omitir por ahora
             </Button>
-            <Button type="submit" className="bg-sky-600 hover:bg-sky-700" disabled={loading}>
+            <Button type="submit" className="bg-brand-600 hover:bg-brand-700" disabled={loading}>
               {loading ? "Guardando..." : "Guardar y continuar"}
             </Button>
           </CardFooter>

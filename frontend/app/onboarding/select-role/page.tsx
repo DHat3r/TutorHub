@@ -119,7 +119,7 @@ export default function SelectRolePage() {
           <Button
             onClick={handleSubmit}
             disabled={!selectedRole}
-            className="px-8 py-3 text-lg font-medium bg-sky-600 hover:bg-sky-700"
+            className="px-8 py-3 text-lg font-medium bg-brand-600 hover:bg-brand-700"
             size="lg"
           >
             Confirmar rol
