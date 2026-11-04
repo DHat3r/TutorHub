@@ -1,6 +1,30 @@
 # TutorHub
 
+[![CI](https://github.com/DHat3r/TutorHub/actions/workflows/ci.yml/badge.svg)](https://github.com/DHat3r/TutorHub/actions/workflows/ci.yml)
+![NestJS](https://img.shields.io/badge/NestJS-11-E0234E?logo=nestjs&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-15-000000?logo=nextdotjs&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1?logo=postgresql&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-compose-2496ED?logo=docker&logoColor=white)
+
 > Plataforma que conecta a estudiantes universitarios con tutores: los tutores publican tutorías y su disponibilidad, y los estudiantes las buscan, reservan y califican.
+
+![Landing de TutorHub](docs/screenshots/landing.png)
+
+## Capturas
+
+| Dashboard del estudiante | Dashboard del tutor |
+|:---:|:---:|
+| ![Dashboard del estudiante con tarjetas de estadísticas y próximas tutorías](docs/screenshots/dashboard-estudiante.png) | ![Dashboard del tutor con sesiones próximas y estadísticas](docs/screenshots/dashboard-tutor.png) |
+| **Explorar tutorías** | **Detalle de una tutoría** |
+| ![Listado de tutorías disponibles](docs/screenshots/explorar.png) | ![Detalle de una tutoría confirmada con datos del tutor](docs/screenshots/detalle-tutoria.png) |
+| **Mis tutorías (tutor)** | **Inicio de sesión** |
+| ![Tarjetas de las tutorías del tutor con su estado](docs/screenshots/mis-tutorias.png) | ![Pantalla de login en dos columnas](docs/screenshots/login.png) |
+
+<p align="center">
+  <img src="docs/screenshots/movil.png" alt="Dashboard del tutor en el celular" width="260" />
+  <br />
+  <em>En el celular, la barra lateral se vuelve un menú desplegable.</em>
+</p>
 
 ## Origen
 
@@ -16,6 +40,7 @@ TutorHub es la reestructuración de **LinkUDP**, un proyecto en equipo de 2025 p
 | El registro dependía de Gmail y la app no arrancaba sin credenciales de Google | SMTP configurable (Mailpit en desarrollo) y Google opcional |
 | El build del frontend fallaba en `/verify` y ocultaba los errores de tipos | Compila con la revisión de tipos activada |
 | 4 specs de plantilla que fallaban y uno que nunca corría (`.spect.ts`) | 19 tests unitarios y 7 e2e en CI |
+| Colores `sky` de Tailwind escritos a mano en cada página y menú superior de texto | Paleta propia en un solo lugar, barra lateral según el rol, logo y landing nuevos |
 
 ## Stack
 
@@ -79,12 +104,15 @@ Flujo principal: el tutor publica una tutoría → el estudiante la reserva (que
 - **La API toma al usuario del JWT, nunca del body:** es la corrección de fondo de los huecos de seguridad. El frontend todavía envía `tutorId`, pero el servidor lo ignora.
 - **Mailpit en vez de Gmail:** permite probar el registro completo (verificación y recuperación de contraseña) sin credenciales reales.
 - **Migraciones y seed al arrancar el contenedor:** el proyecto queda listo con un solo comando. El seed es idempotente, así que reiniciar no duplica datos.
+- **Colores como tokens de diseño:** la paleta `brand` (azul marino y cian) está definida una sola vez en `tailwind.config.js`, y los componentes `StatusBadge` y `StatTile` concentran los colores de los estados y las estadísticas. Cambiar un tono se hace en un archivo, no en 230 clases.
+- **Animaciones con CSS puro:** la ilustración de la landing late y fluye con `@keyframes`, sin librerías, y se apaga si el sistema pide reducir el movimiento (`prefers-reduced-motion`).
 
 ## Qué mejoraría con más tiempo
 
 - Arreglar la configuración de ESLint del backend (mezcla ESLint 8 con configuración plana) y sumarlo al CI.
 - Tests de `bookings` y `profile`, y tests del frontend.
 - Despliegue público.
+- Llevar el diseño nuevo a las páginas que todavía tienen la estructura original (perfil, crear y editar tutoría, calendario y disponibilidad).
 - Las calificaciones de tutores aparecen como "próximamente" en la vista de detalle.
 
 ## Autor
