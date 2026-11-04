@@ -29,8 +29,7 @@ export default function SelectRolePage() {
   const handleSubmit = async () => {
     if (!selectedRole || !userId) return
     const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/assign-role`, {
-      role: selectedRole,
-      userId,
+      role: selectedRole, // el backend toma el usuario de la cookie de sesión
     }, { withCredentials: true })
 
     router.push(res.data.redirectTo)
