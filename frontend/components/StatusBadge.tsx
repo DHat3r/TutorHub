@@ -5,6 +5,7 @@ const STATUS_STYLES: Record<string, { label: string; className: string }> = {
   PENDING: { label: "Pendiente", className: "bg-amber-100 text-amber-800 ring-amber-200" },
   CONFIRMED: { label: "Confirmada", className: "bg-brand-100 text-brand-800 ring-brand-200" },
   CANCELLED: { label: "Cancelada", className: "bg-rose-100 text-rose-800 ring-rose-200" },
+  COMPLETED: { label: "Finalizada", className: "bg-slate-100 text-slate-700 ring-slate-200" },
 };
 
 export default function StatusBadge({ status, className = "" }: { status: string; className?: string }) {

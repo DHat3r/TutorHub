@@ -427,7 +427,7 @@ export default function ProfilePage() {
       <footer className="border-t py-6 md:py-0"> {/* Footer similar a otras páginas */}
         <div className="container flex flex-col items-center justify-between gap-4 md:h-16 md:flex-row">
           <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
-            © 2025 TUTORHUB. Todos los derechos reservados.
+            © 2026 TutorHub
           </p>
         </div>
       </footer>

@@ -7,6 +7,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import StatusBadge from "@/components/StatusBadge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
   ChevronLeft,
@@ -332,25 +333,14 @@ export default function TutoringDetailsPage() {
                     </CardDescription>
                   </div>
                   {tutoring.status && (
-                    <Badge
-                      className={`
-                      ${tutoring.status === "AVAILABLE" ? "bg-green-100 text-green-700" : ""}
-                      ${tutoring.status === "PENDING" ? "bg-yellow-100 text-yellow-700" : ""}
-                      ${tutoring.status === "CONFIRMED" ? "bg-blue-100 text-blue-700" : ""}
-                      ${tutoring.status === "CANCELLED" ? "bg-red-100 text-red-700" : ""}
-                      ${tutoring.status === "COMPLETED" ? "bg-gray-100 text-gray-700" : ""}
-                      ${
+                    <StatusBadge
+                      className="ml-4"
+                      status={
                         isPastSession && (tutoring.status === "CONFIRMED" || tutoring.status === "PENDING")
-                          ? "bg-gray-100 text-gray-700"
-                          : ""
+                          ? "COMPLETED"
+                          : tutoring.status
                       }
-                      text-sm font-semibold ml-4
-                    `}
-                    >
-                      {isPastSession && (tutoring.status === "CONFIRMED" || tutoring.status === "PENDING")
-                        ? "FINALIZADA"
-                        : tutoring.status}
-                    </Badge>
+                    />
                   )}
                 </div>
               </CardHeader>
@@ -386,7 +376,7 @@ export default function TutoringDetailsPage() {
               <CardFooter className="flex flex-col gap-4">
                 {hasBooked ? (
                   <Button
-                    className="w-full bg-red-600 hover:bg-red-700"
+                    className="w-full border border-rose-200 bg-white text-rose-600 hover:bg-rose-50"
                     onClick={handleCancelBooking}
                     disabled={!canCancel || bookingStatus === "loading"}
                   >
@@ -437,7 +427,7 @@ export default function TutoringDetailsPage() {
                 <Dialog>
                   <DialogTrigger asChild>
                     <Button
-                      className="w-full bg-green-600 hover:bg-green-700"
+                      className="w-full bg-brand-600 hover:bg-brand-700"
                       disabled={!currentUser}
                     >
                       <MessageCircle className="mr-2 h-4 w-4" />
@@ -544,7 +534,7 @@ export default function TutoringDetailsPage() {
       <footer className="border-t py-6 md:py-0">
         <div className="container flex flex-col items-center justify-between gap-4 md:h-16 md:flex-row">
           <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
-            © 2025 TUTORHUB. Todos los derechos reservados.
+            © 2026 TutorHub
           </p>
         </div>
       </footer>
