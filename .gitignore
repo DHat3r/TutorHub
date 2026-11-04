@@ -1,0 +1,22 @@
+# Dependencias
+node_modules/
+
+# Compilados (en LinkUDP dist/ estaba versionado)
+dist/
+.next/
+out/
+build/
+coverage/
+*.tsbuildinfo
+next-env.d.ts
+
+# Variables de entorno: solo se versiona .env.example
+.env
+.env.*
+!.env.example
+
+# Logs y sistema
+*.log
+.DS_Store
+.vscode/
+.idea/
