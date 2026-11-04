@@ -20,7 +20,7 @@ async function bootstrap() {
 
   // ✅ Swagger
   const config = new DocumentBuilder()
-    .setTitle('API de Tutorías LinkUDP')
+    .setTitle('API de Tutorías TutorHub')
     .setDescription('Documentación de la API para la gestión de tutorías.')
     .setVersion('1.0')
     .addTag('tutorias')

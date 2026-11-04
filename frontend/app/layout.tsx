@@ -4,7 +4,7 @@ import { AuthProvider } from '@/components/AuthProvider'
 import Header from '@/components/ui/Header'
 
 export const metadata: Metadata = {
-  title: 'LinkUDP',
+  title: 'TutorHub',
   description: 'Tutorias'
 }
 

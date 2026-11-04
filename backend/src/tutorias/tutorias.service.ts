@@ -276,7 +276,7 @@ export class TutoriasService {
             try {
               const emailSubject = `Actualización de Tutoría: ${updatedTutoria.title}`;
               const eventTime = new Date(updatedTutoria.start_time);
-              const emailText = `Hola ${studentUser.full_name},\n\nLa tutoría "${updatedTutoria.title}" de la asignatura "${updatedTutoria.course.name}" ha sido actualizada.\nNuevos detalles:\nHorario: ${eventTime.toLocaleString()}\nDuración aproximada: ${(new Date(updatedTutoria.end_time).getTime() - eventTime.getTime()) / (1000 * 60)} minutos.\n\nPuedes ver los detalles en: ${process.env.FRONTEND_URL}/tutoring/${updatedTutoria.id}\n\nSaludos,\nEquipo LinkUDP`;
+              const emailText = `Hola ${studentUser.full_name},\n\nLa tutoría "${updatedTutoria.title}" de la asignatura "${updatedTutoria.course.name}" ha sido actualizada.\nNuevos detalles:\nHorario: ${eventTime.toLocaleString()}\nDuración aproximada: ${(new Date(updatedTutoria.end_time).getTime() - eventTime.getTime()) / (1000 * 60)} minutos.\n\nPuedes ver los detalles en: ${process.env.FRONTEND_URL}/tutoring/${updatedTutoria.id}\n\nSaludos,\nEquipo TutorHub`;
               
               await this.mailerService.sendMail({
                 to: studentUser.email,
@@ -357,7 +357,7 @@ export class TutoriasService {
            try {
             const emailSubject = `Cancelación de Tutoría: ${tutoriaToDelete.title}`;
             const eventTimeCancelled = new Date(tutoriaToDelete.start_time);
-            const emailText = `Hola ${studentUser.full_name},\n\nLamentamos informarte que la tutoría "${tutoriaToDelete.title}" de la asignatura "${tutoriaToDelete.course.name}", programada para ${eventTimeCancelled.toLocaleString()}, ha sido cancelada por el tutor.\n\nSaludos,\nEquipo LinkUDP`;
+            const emailText = `Hola ${studentUser.full_name},\n\nLamentamos informarte que la tutoría "${tutoriaToDelete.title}" de la asignatura "${tutoriaToDelete.course.name}", programada para ${eventTimeCancelled.toLocaleString()}, ha sido cancelada por el tutor.\n\nSaludos,\nEquipo TutorHub`;
 
             await this.mailerService.sendMail({
               to: studentUser.email,
@@ -481,7 +481,7 @@ El estudiante ${studentProfile.user.full_name} (${studentProfile.user.email}) te
 
 ¡Por favor responde a la brevedad para coordinar!
 
-— Plataforma LinkUDP
+— Plataforma TutorHub
 `;
 
     await this.mailerService.sendMail({

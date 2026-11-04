@@ -109,7 +109,7 @@ export default function RegisterPage() {
         <CardHeader className="text-center">
           <Link href="/" className="inline-block">
             <h1 className="text-3xl font-bold tracking-tight text-sky-700">
-              LinkUDP
+              TutorHub
             </h1>
           </Link>
           <CardTitle className="mt-2 text-2xl">Crear una Cuenta</CardTitle>

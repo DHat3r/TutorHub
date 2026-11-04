@@ -48,7 +48,7 @@ export default function LoginPage() {
   return (
     <div className="container flex h-screen w-screen flex-col items-center justify-center">
       <span className="text-xl font-bold text-sky-600 cursor-default select-none">
-        LINKUDP
+        TUTORHUB
       </span>
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">

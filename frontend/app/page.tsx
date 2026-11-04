@@ -123,7 +123,7 @@ export default function Home() {
       </main>
       <footer className="border-t py-6 bg-white">
         <div className="container text-center text-sm text-gray-500">
-          © 2025 LINKUDP. Todos los derechos reservados.
+          © 2025 TUTORHUB. Todos los derechos reservados.
         </div>
       </footer>
     </div>

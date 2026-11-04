@@ -102,7 +102,7 @@ export default function ProfilePage() {
     <div className="flex min-h-screen flex-col"> {/* Envoltura principal para header y contenido */}
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center">
-          <span className="text-xl font-bold text-sky-600 cursor-default select-none">LINKUDP</span>
+          <span className="text-xl font-bold text-sky-600 cursor-default select-none">TUTORHUB</span>
           <nav className="ml-auto flex gap-4 sm:gap-6">
             <Link
               href="/tutoring"
@@ -427,7 +427,7 @@ export default function ProfilePage() {
       <footer className="border-t py-6 md:py-0"> {/* Footer similar a otras páginas */}
         <div className="container flex flex-col items-center justify-between gap-4 md:h-16 md:flex-row">
           <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
-            © 2025 LINKUDP. Todos los derechos reservados.
+            © 2025 TUTORHUB. Todos los derechos reservados.
           </p>
         </div>
       </footer>

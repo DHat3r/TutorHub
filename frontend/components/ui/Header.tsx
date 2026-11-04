@@ -28,7 +28,7 @@ export default function Header() {
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center">
           <Link href="/" className="text-xl font-bold text-sky-600 cursor-default select-none">
-            LINKUDP
+            TUTORHUB
           </Link>
           <nav className="ml-auto flex items-center gap-4 sm:gap-6">
             <Link
@@ -59,7 +59,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
         <Link href="/" className="text-xl font-bold text-sky-600 cursor-default select-none">
-          LINKUDP
+          TUTORHUB
         </Link>
         <nav className="ml-auto flex items-center gap-4 sm:gap-6">
           <Link

@@ -42,7 +42,7 @@ export default function SelectRolePage() {
       <div className="w-full max-w-2xl">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">¿Cuál es tu rol?</h1>
-          <p className="text-gray-600">Selecciona tu perfil para personalizar tu experiencia en LinkUDP</p>
+          <p className="text-gray-600">Selecciona tu perfil para personalizar tu experiencia en TutorHub</p>
         </div>
 
         <RadioGroup
