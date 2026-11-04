@@ -10,7 +10,9 @@
 	  CardHeader,
 	  CardTitle,
 	} from "@/components/ui/card";
-	import { Badge } from "@/components/ui/badge";
+	import { Badge } from "@/components/ui/badge"
+import StatTile from "@/components/StatTile"
+import { CalendarClock, Sparkles } from "lucide-react";
 	import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"; 
 	import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 	import { Calendar, Clock, MapPin, Search, History, LogOut, Bookmark } from "lucide-react";
@@ -260,7 +262,7 @@
 		<div className="container px-4 py-10 md:px-6">
 		  <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
 		    <div>
-		      <h1 className="text-3xl font-bold tracking-tight text-brand-700">
+		      <h1 className="text-3xl font-bold tracking-tight text-brand-950">
 		        Dashboard de Estudiante
 		      </h1>
 		      <p className="text-muted-foreground">
@@ -277,8 +279,15 @@
 		    </div>
 		  </div>
 
+		  <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-4">
+		    <StatTile label="Próximas tutorías" value={upcomingBookings.length} icon={CalendarClock} variant="cyan" />
+		    <StatTile label="Tutorías tomadas" value={historyBookings.length} icon={History} variant="navy" />
+		    <StatTile label="Guardadas" value={savedTutorings.length} icon={Bookmark} variant="amber" />
+		    <StatTile label="Recomendadas" value={recommendedTutoringsData.length} icon={Sparkles} variant="teal" />
+		  </div>
+
 		  <Tabs defaultValue="upcoming" className="mt-8">
-		    <TabsList className="grid w-full grid-cols-4 md:w-auto">
+		    <TabsList className="flex w-full justify-start overflow-x-auto md:grid md:grid-cols-4">
 		      <TabsTrigger value="upcoming">Próximas Tutorías</TabsTrigger>
 		      <TabsTrigger value="recommended">Recomendados</TabsTrigger>
 		      <TabsTrigger value="history">Historial</TabsTrigger>

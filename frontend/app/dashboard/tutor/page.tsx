@@ -12,6 +12,8 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import StatusBadge from "@/components/StatusBadge"
+import StatTile from "@/components/StatTile"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {
@@ -24,6 +26,9 @@ import {
   Trash2,
   LogOut,
   Star,
+  BookOpen,
+  CalendarClock,
+  Inbox,
 } from "lucide-react"
 import { useAuth, type UserProfile } from "../../../hooks/use-auth"
 import { toast } from "@/components/ui/use-toast"
@@ -393,7 +398,7 @@ export default function TutorDashboardPage() {
         <div className="container px-4 py-10 md:px-6">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>
-              <h1 className="text-3xl font-bold tracking-tight text-brand-700">Dashboard de Tutor</h1>
+              <h1 className="text-3xl font-bold tracking-tight text-brand-950">Dashboard de Tutor</h1>
               <p className="text-muted-foreground">Bienvenido, {tutorName}</p>
             </div>
             <div className="flex items-center gap-2">
@@ -408,7 +413,7 @@ export default function TutorDashboardPage() {
 
             
           <Tabs defaultValue="upcoming" className="mt-8">
-            <TabsList className="grid w-full grid-cols-4 md:w-auto">
+            <TabsList className="flex w-full justify-start overflow-x-auto md:grid md:grid-cols-4">
               <TabsTrigger value="upcoming">Próximas Sesiones</TabsTrigger>
               <TabsTrigger value="solicitudes">Solicitudes</TabsTrigger>
               <TabsTrigger value="mytutorings">Mis Tutorías</TabsTrigger>
@@ -558,18 +563,7 @@ export default function TutorDashboardPage() {
                         <CardDescription className="flex items-center gap-1 text-xs">
                           <Users className="h-3 w-3" /> {tutoring.students} estudiantes interesados/inscritos
                         </CardDescription>
-                        <Badge
-                          variant={
-                            tutoring.status === "AVAILABLE"
-                              ? "secondary"
-                              : tutoring.status === "CONFIRMED"
-                                ? "default"
-                                : "outline"
-                          }
-                          className="mt-1"
-                        >
-                          {tutoring.status}
-                        </Badge>
+                        <StatusBadge status={tutoring.status ?? "AVAILABLE"} className="mt-1 w-fit" />
                       </CardHeader>
                       <CardContent>
                         <p className="text-sm text-muted-foreground line-clamp-2">{tutoring.description}</p>
@@ -691,25 +685,16 @@ export default function TutorDashboardPage() {
                 <CardDescription>Resumen de tu actividad como tutor</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="rounded-lg border p-3 text-center">
-                    <p className="text-sm text-muted-foreground">Tutorías creadas</p>
-                    <p className="text-2xl font-bold text-brand-700">{myTutoringsData.length}</p>
-                  </div>
-                  <div className="rounded-lg border p-3 text-center">
-                    <p className="text-sm text-muted-foreground">Sesiones Próximas</p>
-                    <p className="text-2xl font-bold text-brand-700">{upcomingSessionsData.length}</p>
-                  </div>
-                  <div className="rounded-lg border p-3 text-center">
-                    <p className="text-sm text-muted-foreground">Estudiantes ayudados</p>
-                    <p className="text-2xl font-bold text-brand-700">0</p>
-                  </div>
-                  <div className="rounded-lg border p-3 text-center">
-                    <p className="text-sm text-muted-foreground">Calificación promedio</p>
-                    <p className="text-2xl font-bold text-brand-700">
-                      {currentUserProfile?.tutorProfile?.average_rating || "-"}
-                    </p>
-                  </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <StatTile label="Tutorías creadas" value={myTutoringsData.length} icon={BookOpen} variant="cyan" />
+                  <StatTile label="Sesiones próximas" value={upcomingSessionsData.length} icon={CalendarClock} variant="navy" />
+                  <StatTile label="Solicitudes" value={solicitudesData.length} icon={Inbox} variant="amber" />
+                  <StatTile
+                    label="Calificación promedio"
+                    value={currentUserProfile?.tutorProfile?.average_rating || "-"}
+                    icon={Star}
+                    variant="teal"
+                  />
                 </div>
               </CardContent>
             </Card>
