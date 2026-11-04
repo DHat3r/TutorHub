@@ -1,0 +1,53 @@
+# Levanta todo el sistema con: docker compose up --build
+#   Frontend:  http://localhost:3000
+#   API:       http://localhost:3001  (Swagger en /api-docs)
+#   Correos:   http://localhost:8025  (Mailpit atrapa los correos de verificación)
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-tutorhub}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-tutorhub}
+      POSTGRES_DB: ${POSTGRES_DB:-tutorhub}
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER}"]
+      interval: 5s
+      retries: 10
+
+  mailpit:
+    image: axllent/mailpit:v1.21
+    ports:
+      - "8025:8025"
+
+  api:
+    build: ./backend
+    env_file: .env
+    environment:
+      PORT: 3001
+      DATABASE_URL: postgresql://${POSTGRES_USER:-tutorhub}:${POSTGRES_PASSWORD:-tutorhub}@db:5432/${POSTGRES_DB:-tutorhub}
+      SMTP_HOST: mailpit
+      SMTP_PORT: 1025
+    ports:
+      - "3001:3001"
+    depends_on:
+      db:
+        condition: service_healthy
+      mailpit:
+        condition: service_started
+
+  web:
+    build:
+      context: ./frontend
+      args:
+        NEXT_PUBLIC_BACKEND_URL: ${BACKEND_URL:-http://localhost:3001}
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+
+volumes:
+  db_data:
