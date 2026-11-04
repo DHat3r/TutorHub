@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException, Logger, ForbiddenException } from '@nestjs/common';
+import { Injectable, NotFoundException, Logger, ForbiddenException, BadRequestException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service'; 
 import { CreateTutoriaDto } from './dto/create-tutoria.dto';
 import { UpdateTutoriaDto } from './dto/update-tutoria.dto';
@@ -14,6 +14,32 @@ export class TutoriasService {
     private prisma: PrismaService,
     private readonly mailerService: MailerService
   ) {}
+
+  /** Id del perfil de tutor del usuario; 403 si el usuario no es tutor. */
+  async getTutorProfileIdOrFail(userId: number): Promise<number> {
+    const profile = await this.prisma.tutorProfile.findUnique({
+      where: { userId },
+      select: { id: true },
+    });
+    if (!profile) {
+      throw new ForbiddenException('Solo un tutor puede hacer esta acción.');
+    }
+    return profile.id;
+  }
+
+  /** 404 si la tutoría no existe y 403 si no pertenece al tutor del usuario. */
+  async assertOwnedBy(sessionId: number, userId: number): Promise<void> {
+    const session = await this.prisma.tutoringSession.findUnique({
+      where: { id: sessionId },
+      select: { tutor: { select: { userId: true } } },
+    });
+    if (!session) {
+      throw new NotFoundException(`Tutoría con ID "${sessionId}" no encontrada.`);
+    }
+    if (session.tutor.userId !== userId) {
+      throw new ForbiddenException('Esta tutoría no te pertenece.');
+    }
+  }
 
   private validateText(text: string) {
     const lowerCaseText = text.toLowerCase();
@@ -34,7 +60,7 @@ export class TutoriasService {
       !createTutoriaDto.start_time ||
       !createTutoriaDto.end_time
     ) {
-      throw new Error('Todos los campos son requeridos para publicar la tutoría.');
+      throw new BadRequestException('Todos los campos son requeridos para publicar la tutoría.');
     }
 
     this.validateText(createTutoriaDto.title);

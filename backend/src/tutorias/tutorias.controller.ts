@@ -17,7 +17,6 @@ import { CreateTutoriaDto } from './dto/create-tutoria.dto';
 import { UpdateTutoriaDto } from './dto/update-tutoria.dto';
 import { ApiTags, ApiOperation, ApiResponse, ApiQuery } from '@nestjs/swagger';
 import { TutoringSession } from '@prisma/client';
-import { AuthGuard } from '@nestjs/passport';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { GetUser } from '../auth/get-user.decorator';
 
@@ -31,12 +30,14 @@ export class TutoriasController {
   @ApiOperation({ summary: 'Crear una nueva tutoría' })
   @ApiResponse({ status: 201, description: 'La tutoría ha sido creada exitosamente.' })
   @ApiResponse({ status: 400, description: 'Datos de entrada inválidos.' })
-  async create(@Body() createTutoriaDto: CreateTutoriaDto): Promise<TutoringSession> {
-    try {
-      return await this.tutoriasService.create(createTutoriaDto);
-    } catch (error) {
-      throw error;
-    }
+  @UseGuards(JwtAuthGuard)
+  async create(
+    @Body() createTutoriaDto: CreateTutoriaDto,
+    @GetUser() user: { id: number },
+  ): Promise<TutoringSession> {
+    // El tutor sale de la sesión, no del body: así nadie publica a nombre de otro tutor.
+    createTutoriaDto.tutorId = await this.tutoriasService.getTutorProfileIdOrFail(user.id);
+    return this.tutoriasService.create(createTutoriaDto);
   }
 
   @Get()
@@ -66,14 +67,19 @@ export class TutoriasController {
 @Get('/recomendadas')
 @UseGuards(JwtAuthGuard)
 async getRecommended(@GetUser() user: { id: number }) {
-  console.log("🧠 Usuario recibido:", user);
   return this.tutoriasService.getRecommendedTutorings(user.id);
 }
 
 
   @Get(':id/students')
-  async getStudents(@Param('id') id: string) {
-    return this.tutoriasService.getStudentsByTutoriaId(id);
+  @UseGuards(JwtAuthGuard)
+  async getStudents(
+    @Param('id', ParseIntPipe) id: number,
+    @GetUser() user: { id: number },
+  ) {
+    // Devuelve correos de estudiantes: solo el tutor de la tutoría puede verlos.
+    await this.tutoriasService.assertOwnedBy(id, user.id);
+    return this.tutoriasService.getStudentsByTutoriaId(String(id));
   }
 
   @Get(':id')
@@ -92,7 +98,14 @@ async getRecommended(@GetUser() user: { id: number }) {
   @ApiOperation({ summary: 'Actualizar una tutoría existente' })
   @ApiResponse({ status: 200, description: 'Tutoría actualizada exitosamente.' })
   @ApiResponse({ status: 404, description: 'Tutoría no encontrada.' })
-  async update(@Param('id', ParseIntPipe) id: number, @Body() updateTutoriaDto: UpdateTutoriaDto): Promise<TutoringSession> {
+  @UseGuards(JwtAuthGuard)
+  async update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateTutoriaDto: UpdateTutoriaDto,
+    @GetUser() user: { id: number },
+  ): Promise<TutoringSession> {
+    await this.tutoriasService.assertOwnedBy(id, user.id);
+    delete updateTutoriaDto.tutorId; // no se puede traspasar una tutoría a otro tutor
     return this.tutoriasService.update(id, updateTutoriaDto);
   }
 
@@ -100,13 +113,18 @@ async getRecommended(@GetUser() user: { id: number }) {
   @ApiOperation({ summary: 'Eliminar una tutoría existente' })
   @ApiResponse({ status: 200, description: 'Tutoría eliminada exitosamente.' })
   @ApiResponse({ status: 404, description: 'Tutoría no encontrada.' })
-  async remove(@Param('id', ParseIntPipe) id: number): Promise<TutoringSession> {
+  @UseGuards(JwtAuthGuard)
+  async remove(
+    @Param('id', ParseIntPipe) id: number,
+    @GetUser() user: { id: number },
+  ): Promise<TutoringSession> {
+    await this.tutoriasService.assertOwnedBy(id, user.id);
     return this.tutoriasService.remove(id);
   }
 
   // ---- AQUI VA EL NUEVO ENDPOINT PARA CONTACTAR AL TUTOR ----
   @Post(':sessionId/contact')
-  @UseGuards(AuthGuard('jwt')) // O el guard que uses para autenticación
+  @UseGuards(JwtAuthGuard)
   @ApiOperation({ summary: 'Contactar al tutor de una tutoría (envía correo)' })
   @ApiResponse({ status: 200, description: 'Correo enviado al tutor exitosamente.' })
   async contactTutor(

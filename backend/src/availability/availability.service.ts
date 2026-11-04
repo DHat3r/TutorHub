@@ -1,10 +1,30 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class AvailabilityService {
   constructor(private prisma: PrismaService) {}
+
+  /** Id del perfil de tutor del usuario; 403 si no es tutor. */
+  async getTutorProfileIdOrFail(userId: number): Promise<number> {
+    const profile = await this.prisma.tutorProfile.findUnique({
+      where: { userId },
+      select: { id: true },
+    });
+    if (!profile) throw new ForbiddenException('Solo un tutor puede manejar disponibilidad.');
+    return profile.id;
+  }
+
+  /** 404 si el bloque no existe y 403 si es de otro tutor. */
+  async assertBlockOwnedBy(blockId: number, userId: number): Promise<void> {
+    const block = await this.prisma.availabilityBlock.findUnique({
+      where: { id: blockId },
+      select: { tutor: { select: { userId: true } } },
+    });
+    if (!block) throw new NotFoundException('Bloque no encontrado');
+    if (block.tutor.userId !== userId) throw new ForbiddenException('Este bloque no te pertenece.');
+  }
 
   // 1. Ver bloques de un tutor
   async getTutorAvailability(tutorId: number) {

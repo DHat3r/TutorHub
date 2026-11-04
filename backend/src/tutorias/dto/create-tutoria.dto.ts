@@ -2,10 +2,11 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsString, IsInt, IsDateString, IsOptional } from 'class-validator';
 
 export class CreateTutoriaDto {
-  @ApiProperty({ description: 'ID del tutor que crea la tutoría', example: 1 })
+  // Opcional y se ignora: el servidor lo toma del usuario autenticado.
+  @ApiProperty({ description: 'Se ignora: el tutor es el usuario autenticado', required: false })
   @IsInt()
-  @IsNotEmpty()
-  tutorId: number;
+  @IsOptional()
+  tutorId?: number;
 
   @ApiProperty({ description: 'ID del curso (ramo) asociado a la tutoría', example: 1 })
   @IsInt()
