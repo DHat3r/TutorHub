@@ -96,3 +96,44 @@ main {
   flex: 1;
 }
 }
+
+/* Animaciones de la ilustración del hub (landing). */
+@layer utilities {
+  /* Que scale y translate se apliquen desde el centro de cada figura SVG. */
+  .hub-anim {
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  /* Halo del tutor: crece y se desvanece, como un latido. */
+  .hub-pulse {
+    animation: hub-pulse 2.4s ease-out infinite;
+  }
+  /* Nodos de los ramos: flotan arriba y abajo. */
+  .hub-float {
+    animation: hub-float 4s ease-in-out infinite;
+  }
+  /* Líneas punteadas: el trazo avanza del tutor hacia el ramo. */
+  .hub-flow {
+    animation: hub-flow 1.2s linear infinite;
+  }
+}
+
+@keyframes hub-pulse {
+  0% { transform: scale(0.9); opacity: 0.6; }
+  70% { transform: scale(1.5); opacity: 0; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+@keyframes hub-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes hub-flow {
+  to { stroke-dashoffset: -12; }
+}
+
+/* Accesibilidad: si el sistema pide menos movimiento, se apagan. */
+@media (prefers-reduced-motion: reduce) {
+  .hub-pulse, .hub-float, .hub-flow { animation: none; }
+}

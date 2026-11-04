@@ -30,18 +30,34 @@ function HubIllustration() {
   ];
   return (
     <svg viewBox="0 0 380 300" className="w-full max-w-md" aria-hidden="true">
+      {/* Líneas: el punteado avanza del tutor hacia cada ramo (clase hub-flow en globals.css). */}
       {nodes.map((n) => (
-        <line key={n.label} x1="190" y1="150" x2={n.x} y2={n.y} stroke="#33B8E6" strokeOpacity="0.4" strokeWidth="2" strokeDasharray="6 6" />
+        <line
+          key={n.label}
+          className="hub-flow"
+          x1="190"
+          y1="150"
+          x2={n.x}
+          y2={n.y}
+          stroke="#33B8E6"
+          strokeOpacity="0.5"
+          strokeWidth="2"
+          strokeDasharray="6 6"
+        />
       ))}
-      {nodes.map((n) => (
-        <g key={`${n.label}-node`}>
+      {/* Nodos: flotan con un desfase distinto para que no se muevan al unísono. */}
+      {nodes.map((n, i) => (
+        <g key={`${n.label}-node`} className="hub-anim hub-float" style={{ animationDelay: `${i * -1}s` }}>
           <circle cx={n.x} cy={n.y} r="26" fill={n.c} />
           <text x={n.x} y={n.y + 46} textAnchor="middle" fontSize="13" fill="#FFFFFF" fillOpacity="0.75">
             {n.label}
           </text>
         </g>
       ))}
-      <circle cx="190" cy="150" r="58" fill="#0EA5DB" fillOpacity="0.15" />
+      {/* Halo: dos anillos que laten desfasados medio ciclo, así el pulso no se corta. */}
+      <circle cx="190" cy="150" r="44" fill="#0EA5DB" className="hub-anim hub-pulse" />
+      <circle cx="190" cy="150" r="44" fill="#0EA5DB" className="hub-anim hub-pulse" style={{ animationDelay: "-1.2s" }} />
+      <circle cx="190" cy="150" r="58" fill="#0EA5DB" fillOpacity="0.12" />
       <circle cx="190" cy="150" r="40" fill="#0EA5DB" />
       <text x="190" y="156" textAnchor="middle" fontSize="16" fontWeight="700" fill="#FFFFFF">
         Tutor
