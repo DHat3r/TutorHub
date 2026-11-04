@@ -1,6 +1,7 @@
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
-import { Injectable, UnauthorizedException, Logger } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Request } from 'express';
 import { PrismaService } from '../prisma/prisma.service';
 import { Role } from '@prisma/client';
 import { ConfigService } from '@nestjs/config';
@@ -11,85 +12,39 @@ interface JwtPayload {
   role: Role;
 }
 
+// Lee el token de la cookie httpOnly que deja el login.
+// Antes también aceptaba cookies serializadas "j:{...}" y escribía el token en los logs.
+const fromCookie = (req: Request): string | null =>
+  req?.cookies?.['access_token'] ?? null;
+
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-  private readonly logger = new Logger(JwtStrategy.name);
-
   constructor(
     private readonly prisma: PrismaService,
-    private readonly configService: ConfigService,
+    configService: ConfigService,
   ) {
     super({
       jwtFromRequest: ExtractJwt.fromExtractors([
-        // 1. Try to get token from Authorization header
         ExtractJwt.fromAuthHeaderAsBearerToken(),
-        // 2. Fallback to cookie
-        (req) => {
-          try {
-            const raw = req?.cookies?.['access_token'];
-            if (!raw) {
-              // this.logger.debug('No access_token cookie found');
-              return null;
-            }
-            this.logger.debug(`Found access_token cookie: ${raw}`);
-
-            // Si es una cookie serializada tipo j:{...}
-            if (typeof raw === 'string' && raw.startsWith('j:')) {
-              const decoded = decodeURIComponent(raw.slice(2));
-              const parsed = JSON.parse(decoded);
-              this.logger.debug(`Parsed serialized cookie to: ${parsed.access_token}`);
-              return parsed.access_token;
-            }
-
-            // Si ya es el JWT plano
-            return raw;
-          } catch (e) {
-            this.logger.warn('Error parsing access_token cookie:', e);
-            return null;
-          }
-        },
+        fromCookie,
       ]),
       ignoreExpiration: false,
-      secretOrKey: configService.get<string>('JWT_SECRET') || 'supersecret', // Ensure this matches your signing secret
+      // getOrThrow: si falta JWT_SECRET la app no arranca, en vez de usar 'supersecret'.
+      secretOrKey: configService.getOrThrow<string>('JWT_SECRET'),
     });
-
-    this.logger.log(
-      `JwtStrategy initialized. Using secret: ${
-        configService.get<string>('JWT_SECRET') ? 'from ConfigService (****)' : "'supersecret'"
-      }. ignoreExpiration: false`,
-    );
   }
 
   async validate(payload: JwtPayload) {
-    this.logger.log(`Validating JWT payload: ${JSON.stringify(payload)}`);
-
     if (!payload || typeof payload.sub !== 'number') {
-      this.logger.warn('JWT payload is invalid or missing "sub" (user ID).');
-      throw new UnauthorizedException('Invalid token payload.');
+      throw new UnauthorizedException('Token inválido.');
     }
 
     const user = await this.prisma.user.findUnique({
       where: { id: payload.sub },
     });
-
     if (!user) {
-      this.logger.warn(
-        `User with ID ${payload.sub} (from JWT sub) not found in database.`,
-      );
-      throw new UnauthorizedException(
-        'User specified in token does not exist.',
-      );
+      throw new UnauthorizedException('El usuario del token no existe.');
     }
-
-    if (user.role !== payload.role) {
-      this.logger.warn(
-        `Role mismatch for user ${user.email} (ID: ${user.id}). JWT role: ${payload.role}, DB role: ${user.role}.`,
-      );
-    }
-
-    this.logger.log(
-      `User ${user.email} (ID: ${user.id}, Role: ${user.role}) validated successfully.`,
-    );
 
     const { password, ...result } = user;
     return result;

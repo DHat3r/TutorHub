@@ -7,25 +7,26 @@ import { ConfigService } from '@nestjs/config';
 export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
   constructor(configService: ConfigService) {
     super({
-      clientID: configService.get<string>('GOOGLE_CLIENT_ID'),
-      clientSecret: configService.get<string>('GOOGLE_CLIENT_SECRET'),
-      callbackURL: `${process.env.BACKEND_URL}/auth/google/redirect`,
+      // passport-google lanza un error si clientID está vacío. Con 'no-configurado' la app arranca
+      // igual y GoogleEnabledGuard responde 503 antes de llegar a Google.
+      clientID: configService.get<string>('GOOGLE_CLIENT_ID') || 'no-configurado',
+      clientSecret: configService.get<string>('GOOGLE_CLIENT_SECRET') || 'no-configurado',
+      callbackURL: `${configService.get<string>('BACKEND_URL')}/auth/google/redirect`,
       scope: ['email', 'profile'],
-    } as StrategyOptions); // 👈 esta conversión arregla el error de tipo
+    } as StrategyOptions);
   }
 
   async validate(accessToken: string, refreshToken: string, profile: any, done: VerifyCallback): Promise<any> {
-    const email = profile.emails?.[0].value;
+    const email: string | undefined = profile.emails?.[0]?.value;
+    const allowedDomain = process.env.ALLOWED_EMAIL_DOMAIN;
 
-    if (!email.endsWith('@mail.udp.cl')) {
+    if (!email) {
+      return done(new UnauthorizedException('Google no entregó un correo'), false);
+    }
+    if (allowedDomain && !email.endsWith(`@${allowedDomain}`)) {
       return done(new UnauthorizedException('Correo no institucional'), false);
     }
 
-    const user = {
-      email,
-      name: profile.displayName,
-    };
-
-    done(null, user);
+    done(null, { email, name: profile.displayName });
   }
 }

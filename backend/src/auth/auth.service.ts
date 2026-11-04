@@ -270,8 +270,9 @@ export class AuthService {
     });
   }
 
-  async assignRole(userId: number, role: Role.STUDENT | Role.TUTOR) {
-    await this.prisma.user.update({
+  /** Cambia el rol del usuario, crea el perfil que falte y devuelve un token nuevo con el rol actualizado. */
+  async assignRole(userId: number, role: Role.STUDENT | Role.TUTOR): Promise<string> {
+    const user = await this.prisma.user.update({
       where: { id: userId },
       data: { role },
     });
@@ -299,6 +300,8 @@ export class AuthService {
         },
       });
     }
+
+    return this.jwt.sign({ sub: user.id, email: user.email, role: user.role });
   }
 
   private async logAttempt(userId: number | null, success: boolean) {

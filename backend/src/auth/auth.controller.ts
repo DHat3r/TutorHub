@@ -18,6 +18,7 @@ import { LoginDto } from './dto/login.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { JwtAuthGuard } from './jwt-auth.guard';
 import { GetUser } from './get-user.decorator';
+import { GoogleEnabledGuard } from './google-enabled.guard';
 
 import { ForgotPasswordDto } from './dto/forgot-password.dto';
 import { Public } from './public.decorator';
@@ -95,13 +96,13 @@ async resetPassword(@Body() body: ResetPasswordDto) {
 
 
   @Get('google')
-  @UseGuards(AuthGuard('google'))
+  @UseGuards(GoogleEnabledGuard, AuthGuard('google'))
   async googleAuth() {
     // Redirección a Google
   }
 
   @Get('google/redirect')
-  @UseGuards(AuthGuard('google'))
+  @UseGuards(GoogleEnabledGuard, AuthGuard('google'))
   async googleRedirect(
     @Req() req: Request & { user?: any },
     @Res() res: Response,
@@ -132,13 +133,15 @@ async resetPassword(@Body() body: ResetPasswordDto) {
 
 
 
+  // Antes recibía el userId en el body sin exigir sesión: cualquiera podía cambiar el rol de otro usuario.
+  // Ahora el usuario sale del JWT y solo puede cambiar su propio rol.
+  @UseGuards(JwtAuthGuard)
   @Post('assign-role')
   async assignRole(
-    @Body() body: { role: Role; userId: number },
+    @GetUser() user: { id: number },
+    @Body('role') role: Role,
     @Res({ passthrough: true }) res: Response,
   ) {
-    const { userId, role } = body;
-
     if (role !== Role.STUDENT && role !== Role.TUTOR) {
       throw new HttpException(
         'Rol inválido. Solo se permite STUDENT o TUTOR.',
@@ -146,22 +149,7 @@ async resetPassword(@Body() body: ResetPasswordDto) {
       );
     }
 
-    await this.authService.assignRole(userId, role);
-
-    const user = await this.authService['prisma'].user.findUnique({
-      where: { id: userId },
-    });
-
-    if (!user) {
-      throw new UnauthorizedException('Usuario no encontrado');
-    }
-
-    const token = this.authService['jwt'].sign({
-      sub: user.id,
-      email: user.email,
-      role: user.role,
-    });
-
+    const token = await this.authService.assignRole(user.id, role);
     res.cookie('access_token', token, cookieOptions);
 
     const redirectTo =
@@ -182,7 +170,7 @@ async resetPassword(@Body() body: ResetPasswordDto) {
   @Get('verify')
   async verifyEmail(@Query('token') token: string) {
     try {
-      const payload = await this.authService.verifyEmailToken(token);
+      await this.authService.verifyEmailToken(token);
       return { message: 'Correo verificado con éxito.' };
     } catch (error) {
       throw new UnauthorizedException('Token inválido o expirado.');
