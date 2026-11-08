@@ -3,14 +3,13 @@
 import type React from "react"
 
 import { useState, useEffect } from "react"
-import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import StatusBadge from "@/components/StatusBadge"
+import PageHeader from "@/components/PageHeader"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
-  ChevronLeft,
   Calendar,
   Clock,
   MapPin,
@@ -310,16 +309,10 @@ export default function TutoringDetailsPage() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <main className="flex-1 container py-10">
-        <div className="mb-6 flex items-center">
-          <Link href="/tutoring" className="mr-4">
-            <Button variant="ghost" size="icon">
-              <ChevronLeft className="h-5 w-5" />
-            </Button>
-          </Link>
-          <h1 className="text-2xl font-bold text-brand-700">Detalles de la Tutoría</h1>
-        </div>
-        <div className="grid gap-6 md:grid-cols-3">
+      <main className="flex-1">
+        <div className="container px-4 py-10 md:px-6">
+        <PageHeader title="Detalles de la Tutoría" backHref="/tutoring" />
+        <div className="mt-8 grid gap-6 md:grid-cols-3">
           <div className="md:col-span-2">
             <Card>
               <CardHeader>
@@ -346,7 +339,7 @@ export default function TutoringDetailsPage() {
               </CardHeader>
               <CardContent className="space-y-6">
                 <div>
-                  <h3 className="mb-2 font-medium text-brand-700">Descripción</h3>
+                  <h3 className="mb-2 font-medium text-brand-950">Descripción</h3>
                   <p className="text-muted-foreground">{tutoring.description}</p>
                 </div>
                 <div className="grid gap-4 md:grid-cols-2">
@@ -529,6 +522,7 @@ export default function TutoringDetailsPage() {
               </CardContent>
             </Card>
           </div>
+        </div>
         </div>
       </main>
       <footer className="border-t py-6 md:py-0">
