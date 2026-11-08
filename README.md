@@ -16,7 +16,7 @@
 |:---:|:---:|
 | ![Dashboard del estudiante con tarjetas de estadísticas y próximas tutorías](docs/screenshots/dashboard-estudiante.png) | ![Dashboard del tutor con sesiones próximas y estadísticas](docs/screenshots/dashboard-tutor.png) |
 | **Explorar tutorías** | **Detalle de una tutoría** |
-| ![Listado de tutorías disponibles](docs/screenshots/explorar.png) | ![Detalle de una tutoría confirmada con datos del tutor](docs/screenshots/detalle-tutoria.png) |
+| ![Listado de tutorías disponibles](docs/screenshots/explorar.png) | ![Detalle de una tutoría con su estado y los datos del tutor](docs/screenshots/detalle-tutoria.png) |
 | **Mis tutorías (tutor)** | **Inicio de sesión** |
 | ![Tarjetas de las tutorías del tutor con su estado](docs/screenshots/mis-tutorias.png) | ![Pantalla de login en dos columnas](docs/screenshots/login.png) |
 
@@ -25,6 +25,8 @@
   <br />
   <em>En el celular, la barra lateral se vuelve un menú desplegable.</em>
 </p>
+
+> Capturas de la versión anterior en [docs/screenshots/v1](docs/screenshots/v1).
 
 ## Origen
 
