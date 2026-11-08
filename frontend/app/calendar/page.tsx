@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react" 
-import { motion } from "framer-motion"
+import PageHeader from "@/components/PageHeader"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card" // Ajustado a LinkUPD
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select" // Ajustado a LinkUPD
@@ -274,30 +274,10 @@ export default function CalendarPage() {
 
   if (isMobile) {
     return (
-      <motion.div
-        className="space-y-4 p-4 pb-20"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.3 }}
-      >
-        <motion.div
-          className="space-y-2"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.1 }}
-        >
-          <h2 className="text-xl font-bold tracking-tight text-brand-700">
-            Calendario
-          </h2>
-          <p className="text-muted-foreground text-sm">Visualiza y planifica tus tutorías</p>
-        </motion.div>
+      <div className="space-y-4 p-4 pb-20">
+        <PageHeader title="Calendario" description="Visualiza y planifica tus tutorías" />
 
-        <motion.div
-          className="flex items-center justify-between gap-2"
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.15 }}
-        >
+        <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <Button variant="outline" size="sm" onClick={previousMonth}>
               <ChevronLeft className="h-4 w-4" />
@@ -308,13 +288,9 @@ export default function CalendarPage() {
             </Button>
           </div>
           {/* Botón "Crear Tutoría" eliminado de la vista móvil */}
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.3, delay: 0.2 }}
-        >
+        <div>
           <Card>
           <CardContent className="p-3">
             <div className="grid grid-cols-7 gap-0 text-center text-muted-foreground mb-2">
@@ -322,24 +298,15 @@ export default function CalendarPage() {
                 <div key={index} className="py-1 text-xs font-medium">{day}</div>
               ))}
             </div>
-            <motion.div
-              className="grid grid-cols-7 gap-0"
-              variants={{ visible: { transition: { staggerChildren: 0.01 } } }}
-              initial="hidden"
-              animate="visible"
-            >
+            <div className="grid grid-cols-7 gap-0">
               {calendarDays}
-            </motion.div>
+            </div>
           </CardContent>
         </Card>
-      </motion.div>
+      </div>
 
         {selectedDateForDetails && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.25 }}
-          >
+          <div>
             <Card>
             <CardHeader className="pb-3">
               <CardTitle className="text-base">
@@ -349,29 +316,26 @@ export default function CalendarPage() {
             <CardContent className="space-y-3">
               {selectedDayEvents.length > 0 ? (
                 selectedDayEvents.map((event: any, index: number) => (
-                  <motion.div
+                  <div
                     key={event.id || index} // Usar un ID real del evento
                     className="p-3 rounded-lg border bg-card text-card-foreground shadow-sm cursor-pointer hover:bg-muted/50"
                     onClick={() => {
                       setSelectedEvent(event);
                       setIsDialogOpen(true);
                     }}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.2, delay: index * 0.05 }}
                   >
                     <h4 className="font-semibold text-sm">{event.title}</h4>
                     <p className="text-xs text-muted-foreground">{event.courseName}</p>
                     <p className="text-xs text-muted-foreground">Tutor: {event.tutorName}</p>
                     <p className="text-xs text-muted-foreground">Hora: {event.start_time} - {event.end_time}</p>
-                  </motion.div>
+                  </div>
                 ))
               ) : (
                 <p className="text-muted-foreground text-sm">{loadingTutorias ? "Cargando tutorías..." : "No hay tutorías programadas para este día."}</p>
               )}
             </CardContent>
           </Card>
-        </motion.div>
+        </div>
         )}
 
         {/* Dialog para detalles de tutoría/evento */}
@@ -424,45 +388,25 @@ export default function CalendarPage() {
             </DialogFooter>
           </DialogContent>
         </Dialog>
-      </motion.div>
+      </div>
     );
   }
 
   // Desktop layout
   return (
     <RequireEmailVerified>
+    <div className="flex min-h-screen flex-col">
       <main className="flex-1"> {/* Contenido principal del calendario */}
-        <motion.div
-          className="space-y-6 p-6"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.3 }}
-        >
-          <motion.div
-            className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3, delay: 0.1 }}
-      >
-        <div>
-          <h2 className="text-2xl font-bold tracking-tight text-brand-700">Calendario de Tutorías</h2>
-          <p className="text-muted-foreground mt-1">Visualiza y gestiona tus tutorías programadas.</p>
-        </div>
+        <div className="container px-4 py-10 md:px-6">
+        <div className="space-y-6">
+          <PageHeader
+            title="Calendario de Tutorías"
+            description="Visualiza y gestiona tus tutorías programadas."
+          />
         {/* Select de vista y botón Crear Tutoría eliminados de la vista de escritorio */}
-      </motion.div>
 
-      <motion.div
-        className="flex flex-col md:flex-row gap-6"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay: 0.15 }}
-      >
-        <motion.div
-          className="flex-grow md:w-3/5 lg:w-2/3"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.4, delay: 0.2 }}
-        >
+      <div className="flex flex-col md:flex-row gap-6">
+        <div className="flex-grow md:w-3/5 lg:w-2/3">
           <Card className="h-full">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
             <div className="flex items-center space-x-2">
@@ -486,24 +430,14 @@ export default function CalendarPage() {
                 <div key={day} className="py-2 text-sm font-medium border-b border-border/20">{day}</div>
               ))}
             </div>
-            <motion.div
-              className="grid grid-cols-7 gap-0"
-              variants={{ visible: { transition: { staggerChildren: 0.005 } } }}
-              initial="hidden"
-              animate="visible"
-            >
+            <div className="grid grid-cols-7 gap-0">
               {calendarDays}
-            </motion.div>
+            </div>
           </CardContent>
         </Card>
-        </motion.div>
+        </div>
 
-        <motion.div
-          className="md:w-2/5 lg:w-1/3"
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.4, delay: 0.25 }}
-        >
+        <div className="md:w-2/5 lg:w-1/3">
           <Card className="h-full">
           <CardHeader>
             <CardTitle>
@@ -516,22 +450,19 @@ export default function CalendarPage() {
             {selectedDateForDetails ? (
               selectedDayEvents.length > 0 ? (
                 selectedDayEvents.map((event: any, index: number) => (
-                  <motion.div
+                  <div
                     key={event.id || index}
                     className="p-3 rounded-lg border bg-card text-card-foreground shadow-sm cursor-pointer hover:bg-muted/50"
                     onClick={() => {
                       setSelectedEvent(event);
                       setIsDialogOpen(true);
                     }}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.2, delay: index * 0.05 }}
                   >
                     <h4 className="font-semibold">{event.title}</h4>
                      <p className="text-xs text-muted-foreground">{event.courseName}</p>
                     <p className="text-xs text-muted-foreground">Tutor: {event.tutorName}</p>
                     <p className="text-xs text-muted-foreground">Hora: {event.start_time} - {event.end_time}</p>
-                  </motion.div>
+                  </div>
                 ))
               ) : (
                 <p className="text-muted-foreground">{loadingTutorias ? "Cargando tutorías..." : "No hay tutorías programadas para este día."}</p>
@@ -541,8 +472,8 @@ export default function CalendarPage() {
             )}
           </CardContent>
         </Card>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
 
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent>
@@ -572,7 +503,8 @@ export default function CalendarPage() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
-    </motion.div>
+    </div>
+        </div>
       </main> {/* Fin del contenido principal del calendario */}
       <footer className="border-t py-6 md:py-0">
         <div className="container flex flex-col items-center justify-between gap-4 md:h-16 md:flex-row">
@@ -581,6 +513,7 @@ export default function CalendarPage() {
           </p>
         </div>
       </footer>
+    </div>
     </RequireEmailVerified>
   )
 }
