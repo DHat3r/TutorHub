@@ -4,9 +4,10 @@ import { useState, useEffect } from "react"
 import { useParams, useRouter } from "next/navigation"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import PageHeader from "@/components/PageHeader"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { ChevronLeft, User, Mail, BookOpen, Briefcase, Calendar as CalendarIcon, University, GraduationCap, Info } from "lucide-react" // Added University, GraduationCap, Info
+import { User, Mail, BookOpen, Briefcase, Calendar as CalendarIcon, University, GraduationCap, Info } from "lucide-react" // Added University, GraduationCap, Info
 import { Badge } from "@/components/ui/badge"
 import { formatDateUTC, formatTimeCL } from "@/lib/utils"
 
@@ -172,15 +173,12 @@ export default function TutorPublicProfilePage() {
   }
 
   return (
-    <div className="container mx-auto max-w-4xl py-10">
-      <div className="mb-6 flex items-center">
-        <Button variant="ghost" size="icon" onClick={() => router.back()} className="mr-4">
-          <ChevronLeft className="h-5 w-5" />
-        </Button>
-        <h1 className="text-3xl font-bold text-brand-700">Perfil del Tutor</h1>
-      </div>
+    <div className="flex min-h-screen flex-col">
+      <main className="flex-1">
+      <div className="container mx-auto max-w-4xl px-4 py-10 md:px-6">
+      <PageHeader title="Perfil del Tutor" onBack={() => router.back()} />
 
-      <Card className="overflow-hidden">
+      <Card className="mt-8 overflow-hidden">
         <CardHeader className="bg-brand-50 p-6">
           <div className="flex flex-col items-center gap-4 text-center md:flex-row md:text-left">
             <Avatar className="h-24 w-24 border-4 border-white shadow-lg">
@@ -200,14 +198,14 @@ export default function TutorPublicProfilePage() {
         <CardContent className="p-6 space-y-6">
           {tutorProfile.tutorProfile?.bio && (
             <div>
-              <h3 className="mb-2 text-xl font-semibold text-brand-700">Sobre mí</h3>
+              <h3 className="mb-2 text-xl font-semibold text-brand-950">Sobre mí</h3>
               <p className="text-muted-foreground whitespace-pre-line">{tutorProfile.tutorProfile.bio}</p>
             </div>
           )}
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <div className="space-y-4">
-              <h3 className="text-xl font-semibold text-brand-700">Información Académica</h3>
+              <h3 className="text-xl font-semibold text-brand-950">Información Académica</h3>
               <div className="flex items-start gap-3">
                 <University className="h-5 w-5 mt-1 text-brand-600 flex-shrink-0" />
                 <div>
@@ -232,7 +230,7 @@ export default function TutorPublicProfilePage() {
             </div>
 
             <div className="space-y-4">
-              <h3 className="text-xl font-semibold text-brand-700">Contacto</h3>
+              <h3 className="text-xl font-semibold text-brand-950">Contacto</h3>
               <div className="flex items-start gap-3">
                 <Mail className="h-5 w-5 mt-1 text-brand-600 flex-shrink-0" />
                 <div>
@@ -246,7 +244,7 @@ export default function TutorPublicProfilePage() {
 
           {tutorProfile.tutorProfile?.courses && tutorProfile.tutorProfile.courses.length > 0 && (
             <div>
-              <h3 className="mb-3 text-xl font-semibold text-brand-700">Cursos que Imparte</h3>
+              <h3 className="mb-3 text-xl font-semibold text-brand-950">Cursos que Imparte</h3>
               <div className="flex flex-wrap gap-2">
                 {tutorProfile.tutorProfile.courses.map((course) => (
                   <Badge key={course.id} variant="secondary" className="text-sm bg-brand-100 text-brand-800 hover:bg-brand-200">
@@ -259,7 +257,7 @@ export default function TutorPublicProfilePage() {
           
           {/* Availability Section - Styled like Tutor Dashboard */}
           <div>
-            <h3 className="mb-3 text-xl font-semibold text-brand-700">Disponibilidad</h3>
+            <h3 className="mb-3 text-xl font-semibold text-brand-950">Disponibilidad</h3>
             {tutorProfile.tutorProfile?.availability && tutorProfile.tutorProfile.availability.length > 0 ? (
               <Card>
                 <CardContent className="p-4 space-y-3">
@@ -297,7 +295,7 @@ export default function TutorPublicProfilePage() {
 
           {/* Placeholder for Reviews - to be implemented */}
           <div>
-            <h3 className="mb-3 text-xl font-semibold text-brand-700">Calificaciones y Reseñas</h3>
+            <h3 className="mb-3 text-xl font-semibold text-brand-950">Calificaciones y Reseñas</h3>
             <Card className="border-dashed border-slate-300 bg-slate-50">
               <CardContent className="p-6 text-center text-muted-foreground">
                 <p>Las calificaciones y reseñas de los estudiantes estarán disponibles próximamente.</p>
@@ -307,6 +305,8 @@ export default function TutorPublicProfilePage() {
 
         </CardContent>
       </Card>
+    </div>
+      </main>
     </div>
   )
 }

@@ -24,7 +24,8 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ChevronLeft, Save, Plus, Trash2, Upload } from "lucide-react";
+import { Save, Plus, Trash2, Upload } from "lucide-react";
+import PageHeader from "@/components/PageHeader";
 import { Badge } from "@/components/ui/badge";
 import RequireEmailVerified from "@/components/RequireEmailVerified";
 
@@ -308,7 +309,9 @@ export default function StudentProfilePage() {
   return (
     <RequireEmailVerified>
     {/* Contenedor principal y título, similar al del tutor */}
-    <div className="container py-10">
+    <div className="flex min-h-screen flex-col">
+      <main className="flex-1">
+      <div className="container px-4 py-10 md:px-6">
       {" "}
       {/* Estilo de contenedor del tutor */}
       {error && profile && saving && (
@@ -316,20 +319,9 @@ export default function StudentProfilePage() {
           Error al guardar: {error}
         </p>
       )}
-      <div className="mb-6 flex items-center">
-        {/* Asumiendo que tienes una ruta de dashboard de estudiante */}
-        <Link href="/dashboard/student" className="mr-4">
-          <Button variant="ghost" size="icon">
-            <ChevronLeft className="h-5 w-5" />
-          </Button>
-        </Link>
-        <h1 className="text-2xl font-bold text-brand-700">
-          Mi Perfil de Estudiante
-        </h1>{" "}
-        {/* Título similar */}
-      </div>
+      <PageHeader title="Mi Perfil de Estudiante" backHref="/dashboard/student" />
       {/* Diseño de dos columnas */}
-      <div className="flex flex-col gap-6 md:flex-row">
+      <div className="mt-8 flex flex-col gap-6 md:flex-row">
         {/* Columna Izquierda: Avatar e Info Resumida */}
         <div className="md:w-1/3">
           <Card>
@@ -357,20 +349,20 @@ export default function StudentProfilePage() {
                 {" "}
                 {/* Espaciado similar */}
                 <div>
-                  <h3 className="font-medium text-brand-700">Universidad</h3>{" "}
+                  <h3 className="font-medium text-brand-950">Universidad</h3>{" "}
                   {/* Estilo de subtítulo */}
                   <p className="text-sm text-muted-foreground">
                     {profile.university || "No especificada"}
                   </p>
                 </div>
                 <div>
-                  <h3 className="font-medium text-brand-700">Carrera</h3>
+                  <h3 className="font-medium text-brand-950">Carrera</h3>
                   <p className="text-sm text-muted-foreground">
                     {profile.degree || "No especificada"}
                   </p>
                 </div>
                 <div>
-                  <h3 className="font-medium text-brand-700">Año</h3>
+                  <h3 className="font-medium text-brand-950">Año</h3>
                   <p className="text-sm text-muted-foreground">
                     {profile.year || "No especificado"}
                   </p>
@@ -580,6 +572,8 @@ export default function StudentProfilePage() {
           </Tabs>
         </div>
       </div>
+    </div>
+      </main>
     </div>
     </RequireEmailVerified>
   );
