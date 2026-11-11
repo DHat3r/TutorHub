@@ -3,18 +3,12 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { TimeSelect } from "@/components/ui/time-select"; // Import TimeSelect
+import PageHeader from "@/components/PageHeader";
 import { ChevronLeft, AlertCircle, Calendar as CalendarIcon, Clock } from "lucide-react";
 import { useRouter, useParams } from "next/navigation";
 import { useAuth, type UserProfile } from "../../../../hooks/use-auth"; // Adjusted path
@@ -228,15 +222,16 @@ export default function EditTutoringPage() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <main className="flex-1 container py-10">
-        <div className="mx-auto max-w-2xl">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-2xl text-brand-700">Editar Tutoría</CardTitle>
-              <CardDescription>Actualiza los detalles de tu tutoría.</CardDescription>
-            </CardHeader>
+      <main className="flex-1">
+        <div className="container px-4 py-10 md:px-6">
+          <PageHeader
+            title="Editar Tutoría"
+            description="Actualiza los detalles de tu tutoría."
+            onBack={() => router.back()}
+          />
+          <Card className="mx-auto mt-8 max-w-2xl">
             <form onSubmit={handleSubmit}>
-              <CardContent className="space-y-6">
+              <CardContent className="space-y-6 pt-6">
                 {isPastSession && (
                   <div className="p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300" role="alert">
                     <span className="font-medium">Atención:</span> Esta tutoría ya ha ocurrido y no puede ser modificada.

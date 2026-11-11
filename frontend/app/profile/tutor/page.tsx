@@ -25,7 +25,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {
-  ChevronLeft,
   Save,
   Plus,
   Trash2,
@@ -36,6 +35,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { useAuth } from "@/hooks/use-auth";
 import { formatDateUTC } from "@/lib/utils";
+import PageHeader from "@/components/PageHeader";
 import RequireEmailVerified from "@/components/RequireEmailVerified";
 
 enum DayOfWeek {
@@ -462,23 +462,14 @@ export default function TutorProfileEditPageOriginalDesign() {
 
   return (
     <RequireEmailVerified>
-      <div className="container py-10">
-        <div className="mb-6 flex items-center justify-between">
-          <div className="flex items-center">
-          <Link href="/dashboard/tutor" className="mr-4">
-            <Button variant="ghost" size="icon">
-              <ChevronLeft className="h-5 w-5" />
-            </Button>
-          </Link>
-          <h1 className="text-3xl font-bold text-brand-700">
-            Editar Perfil de Tutor
-          </h1>
-        </div>
+      <div className="flex min-h-screen flex-col">
+        <main className="flex-1">
+        <div className="container px-4 py-10 md:px-6">
+        <PageHeader title="Editar Perfil de Tutor" backHref="/dashboard/tutor" />
         {/* Botón de Guardar General (opcional, si cada pestaña tiene el suyo) */}
         {/* <Button onClick={saveProfileData} disabled={isSaving}>
           <Save className="mr-2 h-4 w-4" />{isSaving ? "Guardando..." : "Guardar Todo"}
         </Button> */}
-      </div>
 
       {pageMessage && (
         <div
@@ -494,7 +485,7 @@ export default function TutorProfileEditPageOriginalDesign() {
 
       <Tabs
         defaultValue="info"
-        className="w-full"
+        className="mt-8 w-full"
         value={activeTab}
         onValueChange={setActiveTab}
       >
@@ -798,6 +789,8 @@ export default function TutorProfileEditPageOriginalDesign() {
           </Card>
         </TabsContent>
       </Tabs>
+    </div>
+      </main>
     </div>
     </RequireEmailVerified>
   );

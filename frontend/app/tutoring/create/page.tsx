@@ -3,8 +3,8 @@
 import type React from "react";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import PageHeader from "@/components/PageHeader";
 import {
   Card,
   CardContent,
@@ -24,7 +24,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { ChevronLeft, Calendar as CalendarIcon } from "lucide-react"; // Added CalendarIcon
+import { Calendar as CalendarIcon } from "lucide-react"; // Added CalendarIcon
 import { useRouter } from "next/navigation";
 import { useAuth, type UserProfile } from "../../../hooks/use-auth";
 import { toast } from "@/components/ui/use-toast";
@@ -273,17 +273,11 @@ export default function CreateTutoringPage() {
 
   return (
     <div className="flex min-h-screen flex-col"> {/* Envoltura principal */}
-      <main className="flex-1 container py-10"> {/* Contenido principal */}
-        <div className="mb-6 flex items-center">
-          <Link href="/dashboard/tutor" className="mr-4">
-            <Button variant="ghost" size="icon">
-              <ChevronLeft className="h-5 w-5" />
-            </Button>
-          </Link>
-          <h1 className="text-2xl font-bold text-brand-700">Crear Nueva Tutoría</h1>
-        </div>
+      <main className="flex-1"> {/* Contenido principal */}
+        <div className="container px-4 py-10 md:px-6">
+        <PageHeader title="Crear Nueva Tutoría" backHref="/dashboard/tutor" />
 
-        <Card className="mx-auto max-w-2xl">
+        <Card className="mx-auto mt-8 max-w-2xl">
         <CardHeader>
           <CardTitle>Detalles de la Tutoría</CardTitle>
           <CardDescription>
@@ -432,6 +426,7 @@ export default function CreateTutoringPage() {
           </CardFooter>
         </form>
       </Card>
+        </div>
       </main> {/* Cierre de <main> */}
       <footer className="border-t py-6 md:py-0">
         <div className="container flex flex-col items-center justify-between gap-4 md:h-16 md:flex-row">

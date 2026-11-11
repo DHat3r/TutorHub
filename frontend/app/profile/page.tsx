@@ -3,7 +3,6 @@
 import type React from "react";
 
 import { useState } from "react";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -18,7 +17,8 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ChevronLeft, Save, Plus, Trash2 } from "lucide-react";
+import { Save, Plus, Trash2 } from "lucide-react";
+import PageHeader from "@/components/PageHeader";
 
 export default function ProfilePage() {
   const [profile, setProfile] = useState({
@@ -99,50 +99,13 @@ export default function ProfilePage() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col"> {/* Envoltura principal para header y contenido */}
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-16 items-center">
-          <span className="text-xl font-bold text-brand-600 cursor-default select-none">TUTORHUB</span>
-          <nav className="ml-auto flex gap-4 sm:gap-6">
-            <Link
-              href="/tutoring"
-              className="text-sm font-medium text-muted-foreground hover:text-foreground"
-            >
-              Explorar
-            </Link>
-            <Link
-              href="/calendar"
-              className="text-sm font-medium text-muted-foreground hover:text-foreground"
-            >
-              Calendario
-            </Link>
-            <Link
-              href="/dashboard/student" // Asumiendo que el perfil es accesible desde un dashboard general o específico
-              className="text-sm font-medium text-muted-foreground hover:text-foreground"
-            >
-              Mi Dashboard
-            </Link>
-            <Link
-              href="/profile"
-              className="text-sm font-medium text-foreground border-b-2 border-brand-600 pb-1"
-            >
-              Mi Perfil
-            </Link>
-          </nav>
-        </div>
-      </header>
-      <main className="flex-1 container py-10"> {/* Contenido principal con padding */}
-        <div className="mb-6 flex items-center">
-          {/* El botón de volver podría llevar al dashboard o a la página anterior */}
-          <Link href="/dashboard/student" className="mr-4">
-            <Button variant="ghost" size="icon">
-              <ChevronLeft className="h-5 w-5" />
-            </Button>
-          </Link>
-          <h1 className="text-2xl font-bold text-brand-700">Mi Perfil</h1> {/* Título general de perfil */}
-        </div>
+    <div className="flex min-h-screen flex-col">
+      <main className="flex-1">
+        <div className="container px-4 py-10 md:px-6"> {/* Contenido principal con padding */}
+        <PageHeader title="Mi Perfil" backHref="/dashboard/student" />
 
-        <div className="flex flex-col gap-6 md:flex-row">
+
+        <div className="mt-8 flex flex-col gap-6 md:flex-row">
         <div className="md:w-1/3">
           <Card>
             <CardHeader>
@@ -163,19 +126,19 @@ export default function ProfilePage() {
             <CardContent>
               <div className="space-y-4">
                 <div>
-                  <h3 className="font-medium text-brand-700">Universidad</h3>
+                  <h3 className="font-medium text-brand-950">Universidad</h3>
                   <p className="text-sm text-muted-foreground">
                     {profile.university}
                   </p>
                 </div>
                 <div>
-                  <h3 className="font-medium text-brand-700">Carrera</h3>
+                  <h3 className="font-medium text-brand-950">Carrera</h3>
                   <p className="text-sm text-muted-foreground">
                     {profile.degree}
                   </p>
                 </div>
                 <div>
-                  <h3 className="font-medium text-brand-700">Año</h3>
+                  <h3 className="font-medium text-brand-950">Año</h3>
                   <p className="text-sm text-muted-foreground">
                     {profile.year}
                   </p>
@@ -423,6 +386,7 @@ export default function ProfilePage() {
           </Tabs>
         </div> {/* Cierre de <div className="md:w-2/3"> */}
         </div> {/* Cierre de <div className="flex flex-col gap-6 md:flex-row"> */}
+        </div>
       </main> {/* Cierre de la etiqueta main */}
       <footer className="border-t py-6 md:py-0"> {/* Footer similar a otras páginas */}
         <div className="container flex flex-col items-center justify-between gap-4 md:h-16 md:flex-row">

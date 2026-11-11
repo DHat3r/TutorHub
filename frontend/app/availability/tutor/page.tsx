@@ -2,11 +2,11 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 import { useAuth } from "@/hooks/use-auth";
 import { Button } from "@/components/ui/button";
+import PageHeader from "@/components/PageHeader";
 import { toast } from "@/components/ui/use-toast";
-import { ChevronLeft, Calendar as CalendarIcon } from "lucide-react";
+import { Calendar as CalendarIcon } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { TimeSelect } from "@/components/ui/time-select";
@@ -133,19 +133,11 @@ export default function ManageAvailabilityPage() {
     <div className="flex min-h-screen flex-col">
       <main className="flex-1">
         <div className="container px-4 py-10 md:px-6">
-          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <div className="flex items-center gap-2">
-              <Link href="/dashboard/tutor">
-                <Button variant="ghost" size="icon">
-                  <ChevronLeft className="h-5 w-5" />
-                </Button>
-              </Link>
-              <div>
-                <h1 className="text-3xl font-bold tracking-tight text-brand-950">Mi Disponibilidad</h1>
-                <p className="text-muted-foreground">Agrega o ajusta tus horarios disponibles para ofrecer tutorías.</p>
-              </div>
-            </div>
-          </div>
+          <PageHeader
+            title="Mi Disponibilidad"
+            description="Agrega o ajusta tus horarios disponibles para ofrecer tutorías."
+            backHref="/dashboard/tutor"
+          />
 
           <div className="my-8 grid grid-cols-1 md:grid-cols-4 gap-4">
             <Popover>
